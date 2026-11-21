@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Armadietto · lista d&#39;attesa</title>
+<meta name="description" content="Inquadri la scatola e dici come la prendi: Armadietto ti dice il giorno in cui finisce e ti avvisa prima, anche per le medicine di chi assisti. Lista d'attesa della beta per iPhone.">
+<meta name="waitlist-endpoint" content="">
+<meta property="og:title" content="Armadietto · sai quando finiscono le medicine di casa, senza contarle">
+<meta property="og:description" content="Inquadri la scatola e dici come la prendi: sai il giorno in cui finisce e ti avvisa prima. Lista d'attesa della beta per iPhone.">
+<meta property="og:image" content="icon-512.png">
+<meta property="og:locale" content="it_IT">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="icon-180.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --sheet: #F2F2F7;
+  --card: #FFFFFF;
+  --screen: #FFFFFF;
+  --grouped: #F2F2F7;
+  --group: #FFFFFF;
+  --group-in: #FFFFFF;
+  --boxcard: #FBFBFD;
+  --ink: #111114;
+  --muted: #6E6E73;
+  --hairline: #E5E5EA;
+  --chip-border: #D4D4DA;
+  --chip-gray: #EBEBEF;
+  --seg-off: #DCDCE1;
+  --placeholder: #B4B4B9;
+  --tertiary: #C4C4C9;
+  --action: #00796B;
+  --action-solid: #008574;
+  --on-action: #FFFFFF;
+  --action-fill: rgba(24, 216, 190, .18);
+  --gray-fill: rgba(118, 118, 128, .12);
+  --ok: #248A3D;
+  --ok-soft: rgba(52, 199, 89, .14);
+  --ok-green: #2B9E4A;
+  --ok-fill: rgba(43, 158, 74, .14);
+  --ok-text: #1D7332;
+  --face-green: #34C759;
+  --violet: #AF52DE;
+  --warn: #AD5700;
+  --stop: #D70015;
+  --brand-a: #2448E3;
+  --brand-b: #00796B;
+  --frame: #111114;
+  --p0: #1A5FC4; --p0-fill: #DCE9FB;
+  --p1: #5B3AA8; --p1-fill: #EBE3FA;
+  --p2: #7B5136; --p2-fill: #F1E4D9;
+  --shadow: 0 1px 2px rgba(17, 17, 20, .06), 0 14px 34px -14px rgba(17, 17, 20, .22);
+  --soft-shadow: 0 2px 10px rgba(17, 17, 20, .08);
+  --f: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --sheet: #1C1C1E; --card: #1C1C1E; --screen: #000000; --grouped: #000000; --group: #1C1C1E; --group-in: #2C2C2E; --boxcard: #1C1C1E;
+    --ink: #FFFFFF; --muted: #98989D; --hairline: #38383A; --chip-border: #38383A; --chip-gray: #2C2C2E; --seg-off: #3A3A3C; --placeholder: #5A5A5F; --tertiary: #48484A;
+    --action: #18D8BE; --action-solid: #0F8F80; --action-fill: rgba(24, 216, 190, .22); --gray-fill: rgba(118, 118, 128, .24);
+    --ok: #30D158; --ok-soft: rgba(48, 209, 88, .2); --ok-green: #30D158; --ok-fill: rgba(48, 209, 88, .18); --ok-text: #30D158; --face-green: #30D158; --violet: #BF5AF2;
+    --warn: #FF9F0A; --stop: #FF453A; --brand-a: #5B8CFF; --brand-b: #18D8BE; --frame: #2C2C2E;
+    --p0: #0A84FF; --p0-fill: rgba(10, 132, 255, .24);
+    --p1: #BF5AF2; --p1-fill: rgba(191, 90, 242, .24);
+    --p2: #AC8E68; --p2-fill: rgba(172, 142, 104, .24);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 34px -14px rgba(0, 0, 0, .7);
+    --soft-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000; --sheet: #1C1C1E; --card: #1C1C1E; --screen: #000000; --grouped: #000000; --group: #1C1C1E; --group-in: #2C2C2E; --boxcard: #1C1C1E;
+  --ink: #FFFFFF; --muted: #98989D; --hairline: #38383A; --chip-border: #38383A; --chip-gray: #2C2C2E; --seg-off: #3A3A3C; --placeholder: #5A5A5F; --tertiary: #48484A;
+  --action: #18D8BE; --action-solid: #0F8F80; --action-fill: rgba(24, 216, 190, .22); --gray-fill: rgba(118, 118, 128, .24);
+  --ok: #30D158; --ok-soft: rgba(48, 209, 88, .2); --ok-green: #30D158; --ok-fill: rgba(48, 209, 88, .18); --ok-text: #30D158; --face-green: #30D158; --violet: #BF5AF2;
+  --warn: #FF9F0A; --stop: #FF453A; --brand-a: #5B8CFF; --brand-b: #18D8BE; --frame: #2C2C2E;
+  --p0: #0A84FF; --p0-fill: rgba(10, 132, 255, .24);
+  --p1: #BF5AF2; --p1-fill: rgba(191, 90, 242, .24);
+  --p2: #AC8E68; --p2-fill: rgba(172, 142, 104, .24);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 34px -14px rgba(0, 0, 0, .7);
+  --soft-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.47 var(--f); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 2px; border-radius: 8px; }
+.wrap { max-width: 68rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, h4, h5 { font-family: var(--f); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.25rem, 5.4vw, 3.5rem); line-height: 1.05; font-weight: 700; letter-spacing: -.03em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); line-height: 1.12; font-weight: 700; letter-spacing: -.02em; }
+h3 { font-size: 1.1875rem; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; }
+p { margin: 0; }
+.lead { font-size: 1.1875rem; color: var(--muted); max-width: 34rem; }
+.label { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.small { font-size: .875rem; color: var(--muted); }
+
+.top { padding-block: 16px 0; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; font-size: 1.375rem; letter-spacing: -.02em; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 34px; height: 26px; }
+.top a.jump { font-weight: 600; font-size: .9375rem; }
+
+.hero { padding-block: 32px 40px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.offer { font-weight: 600; max-width: 34rem; }
+
+.signup { display: grid; gap: 12px; max-width: 30rem; }
+.field-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.field-row input[type="email"] { flex: 1 1 14rem; min-width: 0; font: inherit; padding: 13px 16px; border-radius: 12px; border: 1px solid var(--chip-border); background: var(--card); color: var(--ink); }
+.field-row input[type="email"]::placeholder { color: var(--muted); }
+.field-row input[type="email"]:focus { border-color: var(--action); outline: none; box-shadow: 0 0 0 4px var(--action-fill); }
+.btn { font: 600 1.0625rem/1 var(--f); padding: 15px 24px; border-radius: 999px; border: 0; background: var(--action-solid); color: var(--on-action); cursor: pointer; white-space: nowrap; display: inline-block; }
+.btn:hover { filter: brightness(1.08); text-decoration: none; }
+.btn[disabled] { opacity: .6; cursor: progress; }
+.btn.quiet { background: var(--action-fill); color: var(--action); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--action-solid); flex: none; }
+.hp { position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden; }
+.status { font-weight: 600; min-height: 1.4em; }
+.status.ok { color: var(--ok); }
+.status.err { color: var(--stop); }
+.done { display: grid; gap: 10px; padding: 18px; border-radius: 16px; background: var(--ok-soft); max-width: 30rem; justify-items: start; }
+.done strong { font-size: 1.1875rem; }
+.done .ask { padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--ok) 25%, transparent); width: 100%; }
+
+.facts { list-style: none; margin: 40px 0 0; padding: 18px 0 0; border-top: 1px solid var(--hairline); display: flex; flex-wrap: wrap; gap: 10px 28px; color: var(--muted); font-size: .9375rem; }
+.facts li { display: flex; align-items: center; gap: 8px; }
+.facts svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--action); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.ico { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+
+.fab { display: grid; grid-template-columns: calc(32px * var(--u)) minmax(0, 1fr); gap: calc(12px * var(--u)); align-items: center; padding: calc(10px * var(--u)) calc(12px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--ok-fill); line-height: 1.25; }
+.fab svg { width: calc(30px * var(--u)); height: calc(30px * var(--u)); stroke: var(--ok-green); stroke-width: 1.5; }
+.fab b { display: block; font-size: calc(17px * var(--u)); font-weight: 600; }
+.fab .g { display: block; font-size: calc(17px * var(--u)); font-weight: 500; color: var(--ok-text); }
+.fab small { display: block; font-size: calc(13px * var(--u)); color: var(--muted); }
+.pbtn { height: calc(52px * var(--u)); border-radius: 999px; background: var(--action-solid); color: #FFF; font-weight: 600; font-size: calc(17px * var(--u)); display: grid; place-items: center; }
+.later { height: calc(40px * var(--u)); display: grid; place-items: center; color: var(--action); font-weight: 600; font-size: calc(15px * var(--u)); }
+
+.lrow { position: relative; display: grid; grid-template-columns: calc(22px * var(--u)) minmax(0, 1fr); column-gap: calc(10px * var(--u)); padding: calc(11px * var(--u)) 0; line-height: 1.3; }
+.lrow + .lrow::before { content: ""; position: absolute; top: 0; left: calc(32px * var(--u)); right: 0; border-top: 1px solid var(--hairline); }
+.lrow .ri { width: calc(22px * var(--u)); height: calc(22px * var(--u)); margin-top: calc(1px * var(--u)); background: var(--muted); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 13.3 10.3 7.2a3.5 3.5 0 0 1 5 5l-6.1 6.1a3.5 3.5 0 0 1-5-5Z'/%3E%3Cpath d='m7.2 10.3 5 5'/%3E%3Ccircle cx='17.8' cy='17.8' r='3'/%3E%3Cpath d='m15.7 19.9 4.2-4.2'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 13.3 10.3 7.2a3.5 3.5 0 0 1 5 5l-6.1 6.1a3.5 3.5 0 0 1-5-5Z'/%3E%3Cpath d='m7.2 10.3 5 5'/%3E%3Ccircle cx='17.8' cy='17.8' r='3'/%3E%3Cpath d='m15.7 19.9 4.2-4.2'/%3E%3C/svg%3E") center / contain no-repeat; }
+.lrow .rb { display: grid; gap: calc(3px * var(--u)); min-width: 0; }
+.lrow .rh { display: flex; justify-content: space-between; align-items: baseline; gap: calc(8px * var(--u)); }
+.lrow .t { font-size: calc(17px * var(--u)); }
+.lrow .t .ds { color: var(--muted); }
+.lrow.fix .t .n { font-weight: 600; }
+.lrow .d { font-size: calc(15px * var(--u)); font-weight: 600; white-space: nowrap; }
+.lrow .warn { color: var(--warn); }
+.lrow .l { font-size: calc(15px * var(--u)); color: var(--muted); }
+.lrow .l .st { color: var(--warn); font-weight: 500; }
+.lrow .come { display: flex; align-items: center; gap: calc(6px * var(--u)); font-size: calc(15px * var(--u)); color: var(--muted); white-space: nowrap; }
+.lrow .come .sp { width: calc(8px * var(--u)); }
+.lrow .come svg { width: calc(12px * var(--u)); height: calc(12px * var(--u)); stroke-width: 1.4; }
+.lrow .btns { margin-top: calc(6px * var(--u)); display: flex; flex-wrap: wrap; gap: calc(8px * var(--u)); align-items: center; }
+.lrow .step { font-size: calc(15px * var(--u)); color: var(--muted); }
+.cb { height: calc(36px * var(--u)); padding: 0 calc(10px * var(--u)); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: calc(6px * var(--u)); font-size: calc(15px * var(--u)); white-space: nowrap; }
+.cb.fill { background: var(--action-solid); color: #FFF; font-weight: 600; min-width: calc(156px * var(--u)); }
+.cb.gray { background: var(--gray-fill); color: var(--ink); font-weight: 500; }
+.cb svg { width: calc(15px * var(--u)); height: calc(15px * var(--u)); stroke-width: 1.8; }
+.av { width: calc(18px * var(--u)); height: calc(18px * var(--u)); border-radius: 50%; display: inline-grid; place-items: center; font-style: normal; font-size: calc(10.4px * var(--u)); font-weight: 600; flex: none; }
+.av.p0 { background: var(--p0-fill); color: var(--p0); }
+.av.p1 { background: var(--p1-fill); color: var(--p1); }
+.av.p2 { background: var(--p2-fill); color: var(--p2); }
+.bp { display: flex; justify-content: flex-end; font-size: calc(15px * var(--u)); color: var(--muted); padding-top: calc(6px * var(--u)); }
+
+.hero-visual { display: grid; justify-items: center; gap: 14px; min-width: 0; }
+.phone { width: min(100%, 330px); border-radius: 50px; padding: 10px; background: var(--frame); box-shadow: var(--shadow); }
+.screen { --u: .77; position: relative; height: 674px; border-radius: 40px; overflow: hidden; background: var(--grouped); font-size: 13px; line-height: 1.3; color: var(--ink); }
+.scr { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 54px 14px 0; opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility 0s .4s; }
+.scr.on { opacity: 1; visibility: visible; transition: opacity .4s ease; }
+.nav { position: relative; height: 33px; display: flex; align-items: center; justify-content: space-between; flex: none; }
+.nav .back { width: 33px; height: 33px; border-radius: 50%; background: var(--group); box-shadow: var(--soft-shadow); display: grid; place-items: center; color: var(--action); }
+.nav .back svg { width: 9px; height: 14px; stroke-width: 2.2; }
+.nav .seg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; gap: 5px; }
+.nav .seg i { width: 28px; height: 3px; border-radius: 2px; background: var(--action-solid); }
+.nav .seg i.off { background: var(--seg-off); }
+.nav .skip { color: var(--action); font-size: 13px; }
+.q { margin-top: 10px; font-size: 21.5px; line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
+.qs { margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+.camnote { margin-top: 9px; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border-radius: 15px; background: var(--group); font-size: 13px; line-height: 1.35; flex: none; }
+.camnote svg { width: 19px; height: 19px; color: var(--muted); stroke-width: 1.5; margin-top: 1px; }
+
+.cam { position: relative; margin-top: 16px; height: 321px; border-radius: 23px; background: #0C0C0E; overflow: hidden; flex: none; box-shadow: 0 8px 22px -12px rgba(0,0,0,.3); }
+.cam .vf { position: absolute; left: 33px; right: 33px; top: 56px; bottom: 63px; }
+.cam .vf::before { content: ""; position: absolute; inset: 0; border: 2px solid rgba(235,235,240,.9); border-radius: 10px; -webkit-mask: linear-gradient(#000 0 0) top left / 24px 24px no-repeat, linear-gradient(#000 0 0) top right / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom left / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom right / 24px 24px no-repeat; mask: linear-gradient(#000 0 0) top left / 24px 24px no-repeat, linear-gradient(#000 0 0) top right / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom left / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom right / 24px 24px no-repeat; }
+.cam .scanline { position: absolute; left: 40px; right: 40px; bottom: 77px; height: 2px; background: linear-gradient(90deg, transparent, #18D8BE 18%, #18D8BE 82%, transparent); box-shadow: 0 0 12px 2px rgba(24,216,190,.35); opacity: .85; }
+.cam .expand { position: absolute; top: 9px; right: 10px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.16); color: #FFF; display: grid; place-items: center; opacity: 0; }
+.cam .expand svg { width: 12px; height: 12px; stroke-width: 1.8; }
+.cam .pack { position: absolute; left: 50%; top: 46%; width: 70%; aspect-ratio: 1.55; border-radius: 6px; background: linear-gradient(180deg, #FFFFFF 0 62%, #C8102E 62% 100%); box-shadow: 0 14px 30px rgba(0,0,0,.5); color: #111114; padding: 11px 13px; display: grid; align-content: start; gap: 2px; transform: translate(-50%, -50%) rotate(-5deg); opacity: 0; }
+.cam .pack b { font-size: 15px; letter-spacing: -.01em; }
+.cam .pack span { font-size: 10px; color: #6E6E73; }
+.cam .pack i { position: absolute; left: 13px; bottom: 8px; font-style: normal; font-size: 9px; color: #FFF; font-weight: 600; letter-spacing: .04em; }
+.cam .light { position: absolute; left: 0; right: 0; height: 120px; top: 100%; background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.28), rgba(255,255,255,.9)); opacity: 0; }
+.cam .open { position: absolute; left: 50%; top: 40%; width: 800px; height: 800px; margin: -400px 0 0 -400px; border-radius: 50%; background: var(--group); }
+.cam .face { position: absolute; inset: 0; padding: 18px 18px 16px; display: flex; flex-direction: column; color: var(--ink); }
+.cam .chk { width: 31px; height: 31px; stroke: var(--face-green); stroke-width: 1.6; }
+.cam .face h5 { margin-top: 14px; font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.cam .face .sub { color: var(--muted); font-size: 13px; margin-top: 3px; }
+.cam .rd { margin-top: auto; border-top: 1px solid var(--hairline); padding: 10px 0 12px; display: flex; justify-content: space-between; gap: 10px; font-size: 12px; line-height: 1.3; }
+.cam .rd span:first-child { color: var(--muted); white-space: nowrap; }
+.cam .rd span:last-child { text-align: right; }
+.cam .vb2 { display: grid; grid-template-columns: 108fr 130fr; gap: 7px; }
+.cam .vb2 span { height: 38px; border-radius: 9px; display: grid; place-items: center; font-weight: 600; font-size: 13px; white-space: nowrap; }
+.cam .vb2 .no { background: var(--chip-gray); color: var(--action); }
+.cam .vb2 .go { background: var(--action-solid); color: #FFF; }
+.search { margin-top: 9px; height: 37px; flex: none; border-radius: 999px; background: var(--group); box-shadow: var(--soft-shadow); display: flex; align-items: center; gap: 8px; padding: 0 14px; color: var(--placeholder); font-size: 13px; opacity: 0; }
+.search svg { width: 14px; height: 14px; color: var(--muted); stroke-width: 2; }
+
+.anim .scr.scan.on .pack { animation: pack var(--cyc) ease-out both; }
+.anim .scr.scan.on .light { animation: light var(--cyc) ease-in-out both; }
+.anim .scr.scan.on .open { animation: open var(--cyc) cubic-bezier(.4,0,.2,1) both; }
+.anim .scr.scan.on .search, .anim .scr.scan.on .expand { animation: hide var(--cyc) ease both; }
+.anim .scr.scan.on .scanline { animation: pulse 1.6s ease-in-out infinite; }
+.anim .scr.scan.on .face > * { animation: enter var(--cyc) cubic-bezier(.2,.8,.2,1) both; }
+.anim .scr.scan.on .face > :nth-child(2) { animation-name: enter2; }
+.anim .scr.scan.on .face > :nth-child(3) { animation-name: enter3; }
+.anim .scr.scan.on .face > :nth-child(4) { animation-name: enter4; }
+.anim .scr.scan.on .face > :nth-child(5) { animation-name: enter5; }
+.scr.scan { --cyc: 7s; }
+@keyframes pack { 0% { opacity: 0; transform: translate(-50%, 10%) rotate(4deg) scale(.9); } 12%, 100% { opacity: 1; transform: translate(-50%, -50%) rotate(-5deg) scale(1); } }
+@keyframes light { 0%, 30% { top: -120px; opacity: 1; } 38% { top: 100%; opacity: 1; } 39%, 100% { top: 100%; opacity: 0; } }
+@keyframes open { 0%, 36% { transform: scale(.001); opacity: 0; } 37% { transform: scale(.001); opacity: 1; } 46%, 100% { transform: scale(1); opacity: 1; } }
+@keyframes hide { 0%, 38% { opacity: 1; } 44%, 100% { opacity: 0; } }
+@keyframes pulse { 50% { opacity: .35; } }
+@keyframes enter { 0%, 40% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 46%, 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes enter2 { 0%, 41% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 47%, 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes enter3 { 0%, 42% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 48%, 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes enter4 { 0%, 43% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 49%, 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes enter5 { 0%, 44% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 50%, 100% { opacity: 1; transform: none; filter: none; } }
+
+.boxcard { margin-top: 12px; height: 538px; flex: none; border-radius: 23px; background: var(--boxcard); box-shadow: 0 8px 24px -12px rgba(0,0,0,.22); display: flex; flex-direction: column; overflow: hidden; }
+.boxcard .bt { padding: 40px 13px 0; font-size: 19px; font-weight: 700; letter-spacing: -.01em; flex: none; }
+.boxcard .lst { flex: 1; min-height: 0; overflow: hidden; padding: 8px 13px 0; }
+.grp { background: var(--group-in); border-radius: 15px; }
+.gr { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 35px; padding: 0 12px 0 13px; font-size: 13px; }
+.gr + .gr { border-top: 1px solid var(--hairline); margin-left: 13px; padding-left: 0; }
+.gr em { font-style: normal; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.gr em .cmi { width: 15px; height: 15px; stroke-width: 1.5; }
+.gr em .chv { width: 6px; height: 11px; stroke-width: 1.8; color: var(--tertiary); }
+.stp { display: inline-flex; align-items: center; height: 23px; border-radius: 7px; background: var(--gray-fill); margin-left: 4px; }
+.stp i { font-style: normal; width: 29px; display: grid; place-items: center; font-size: 15px; font-weight: 500; }
+.stp i:first-child { color: var(--tertiary); border-right: 1px solid var(--hairline); }
+.stp i:last-child { color: var(--action); }
+.hdr { margin: 22px 0 8px 12px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.chips2 { display: flex; flex-wrap: wrap; gap: 7px; }
+.chips2 span { height: 29px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; background: var(--chip-gray); font-size: 11.6px; font-weight: 600; white-space: nowrap; }
+.chips2.lite span { font-weight: 400; }
+.chips2 span.on { background: var(--action-fill); color: var(--action); font-weight: 600; }
+.boxcard .bottom { flex: none; padding: 6px 11px 11px; display: grid; }
+.boxcard .fab { margin-bottom: 8px; }
+
+.anim .scr.box.on.s2 .chips2 span.on { animation: sel .35s ease .6s both; }
+.anim .scr.box.on.s2 .chips2.c2 span.on { animation-delay: 1.3s; }
+.anim .scr.box.on.s2 .fab { animation: rise .5s cubic-bezier(.2,.8,.2,1) 1.9s both; }
+.anim .scr.box.on.s3 .fab { animation: glow 1.6s ease .3s both; }
+.anim .scr.box.on.s3 .pbtn { animation: press .5s ease 2.4s both; }
+@keyframes sel { from { background: var(--chip-gray); color: var(--ink); } }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+@keyframes glow { 0% { box-shadow: 0 0 0 0 rgba(43,158,74,0); } 30% { box-shadow: 0 0 0 4px rgba(43,158,74,.35); } 100% { box-shadow: 0 0 0 0 rgba(43,158,74,0); } }
+@keyframes press { 50% { transform: scale(.96); filter: brightness(.9); } }
+
+.hero-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(100%, 360px); }
+.hero-steps button { position: relative; overflow: hidden; width: 100%; height: 100%; font: 600 .8125rem/1.25 var(--f); color: var(--muted); background: transparent; border: 0; border-radius: 12px; padding: 10px 8px; cursor: pointer; text-align: center; }
+.hero-steps button[aria-pressed="true"] { color: var(--ink); background: var(--sheet); }
+.hero-steps button span { display: block; font-size: .75rem; color: var(--action); }
+.hero-visual.auto .hero-steps button[aria-pressed="true"]::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--action); transform-origin: left; animation: avanza var(--dur, 5s) linear both; }
+@keyframes avanza { from { transform: scaleX(0); } }
+
+section { padding-block: 72px; }
+.band { background: var(--sheet); }
+.section-head { display: grid; gap: 10px; max-width: 40rem; margin-bottom: 36px; }
+
+.people { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.person { display: grid; gap: 10px; align-content: start; padding: 20px; border-radius: 16px; background: var(--card); min-width: 0; }
+.person p { font-size: 1.0625rem; line-height: 1.4; font-weight: 500; }
+.person-ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--action-fill); color: var(--action); }
+.person-ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.tl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 342px); gap: 20px 56px; align-items: center; padding: 28px; border-radius: 24px; background: var(--sheet); }
+.tl .txt { display: grid; gap: 10px; align-content: center; max-width: 30rem; }
+.tl .txt p { color: var(--muted); }
+.when { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-size: .8125rem; font-weight: 600; color: var(--action); }
+.when i { font-style: normal; width: 24px; height: 24px; border-radius: 50%; background: var(--action-fill); display: grid; place-items: center; font-size: .75rem; }
+.vis { --u: .85; justify-self: center; width: 100%; max-width: 342px; font-size: 14px; line-height: 1.3; }
+
+.card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: calc(16px * var(--u)) calc(20px * var(--u)); }
+.ansr .bt { font-size: calc(24px * var(--u)); font-weight: 700; letter-spacing: -.01em; margin: calc(6px * var(--u)) 0 calc(12px * var(--u)); }
+.ansr .fab { margin-bottom: calc(10px * var(--u)); }
+
+.lock { border-radius: 26px; padding: 22px 10px 14px; color: #FFF; background: linear-gradient(165deg, #2448E3 0%, #0F8F80 58%, #0B3440 100%); display: grid; justify-items: center; box-shadow: var(--shadow); }
+.lock .day { font-size: 14px; font-weight: 600; opacity: .92; }
+.lock .clock { font-size: 64px; font-weight: 700; letter-spacing: -.03em; line-height: 1; margin: 2px 0 26px; opacity: .95; font-variant-numeric: tabular-nums; }
+.note { position: relative; width: 100%; display: grid; grid-template-columns: 30px minmax(0, 1fr) 34px; gap: 10px; align-items: center; padding: 11px 12px; border-radius: 22px; background: rgba(245,245,247,.9); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); color: #111114; text-align: left; box-shadow: 0 8px 22px -10px rgba(0,0,0,.4); font-size: 13px; line-height: 1.3; }
+.note img { width: 30px; height: 30px; border-radius: 7px; }
+.note b { display: block; font-weight: 600; padding-right: 22px; }
+.note .tm { position: absolute; top: 10px; right: 13px; color: #6E6E73; font-size: 12px; }
+.note .th { width: 34px; height: 34px; border-radius: 8px; background: #FBEBCB; color: #A65400; display: grid; place-items: center; align-self: end; }
+.note .th svg { width: 20px; height: 20px; stroke-width: 1.5; }
+
+.doc { padding: 0 0 calc(4px * var(--u)); background: var(--grouped); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--hairline); }
+.doc .grab { width: 36px; height: 5px; border-radius: 3px; background: var(--seg-off); margin: 6px auto 0; }
+.doc h5 { margin: calc(14px * var(--u)) calc(20px * var(--u)) 0; font-size: calc(22px * var(--u)); font-weight: 700; }
+.doc .sb { margin: calc(3px * var(--u)) calc(20px * var(--u)) 0; font-size: calc(15px * var(--u)); color: var(--muted); }
+.doc .pc, .doc .mc { margin: calc(14px * var(--u)) calc(16px * var(--u)) 0; background: var(--group); border-radius: calc(14px * var(--u)); }
+.doc .dr, .doc .mr { display: grid; grid-template-columns: calc(26px * var(--u)) minmax(0, 1fr) auto; gap: calc(12px * var(--u)); align-items: center; padding: calc(9px * var(--u)) calc(16px * var(--u)); min-height: calc(58px * var(--u)); }
+.doc .dr > svg { width: calc(22px * var(--u)); height: calc(22px * var(--u)); color: var(--violet); stroke-width: 1.5; }
+.doc .dr .chv { width: calc(7px * var(--u)); height: calc(12px * var(--u)); color: var(--tertiary); stroke-width: 2; }
+.doc b { display: block; font-size: calc(17px * var(--u)); font-weight: 600; }
+.doc .ft { display: block; font-size: calc(13px * var(--u)); color: var(--muted); }
+.doc .dv { border-top: 1px solid var(--hairline); margin-left: calc(54px * var(--u)); }
+.doc .ck { width: calc(22px * var(--u)); height: calc(22px * var(--u)); border-radius: 50%; background: var(--action-solid); color: #FFF; display: grid; place-items: center; justify-self: center; }
+.doc .ck svg { width: 60%; height: 60%; stroke-width: 3; }
+.doc .mc { padding: calc(12px * var(--u)) calc(16px * var(--u)) 0; }
+.doc .mh { display: flex; justify-content: space-between; font-size: calc(13px * var(--u)); color: var(--muted); }
+.doc .mh span:last-child { color: var(--action); }
+.doc .mt { margin-top: calc(6px * var(--u)); font-size: calc(15px * var(--u)); line-height: 1.42; }
+.doc .fr { margin-top: calc(8px * var(--u)); border-top: 1px solid var(--hairline); margin-right: calc(-16px * var(--u)); padding-right: calc(16px * var(--u)); min-height: calc(44px * var(--u)); display: flex; align-items: center; justify-content: space-between; font-size: calc(15px * var(--u)); }
+.doc .tiles { margin: calc(12px * var(--u)) calc(16px * var(--u)) 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(8px * var(--u)); }
+.doc .tiles span { min-height: calc(64px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--group); color: var(--action); display: grid; justify-items: center; align-content: center; gap: calc(4px * var(--u)); font-size: calc(13px * var(--u)); font-weight: 600; }
+.doc .tiles svg { width: calc(24px * var(--u)); height: calc(24px * var(--u)); stroke-width: 1.5; }
+.doc .fn { padding: calc(14px * var(--u)) calc(24px * var(--u)) calc(12px * var(--u)); text-align: center; font-size: calc(13px * var(--u)); color: var(--muted); }
+
+.list-card { background: var(--screen); padding-top: calc(6px * var(--u)); padding-bottom: calc(6px * var(--u)); }
+.buy .swap { display: grid; }
+.buy .swap > * { grid-area: 1 / 1; }
+.buy .after { opacity: 0; }
+.buy .gone { overflow: hidden; max-height: 120px; }
+.buy.play .before { animation: out 4.2s ease both; }
+.buy.play .after { animation: in 4.2s ease both; }
+.buy.play .cb.fill { animation: tap 4.2s ease both; }
+.buy.play .gone { animation: fold 4.2s ease both; }
+.buy.play .n { animation: plain 4.2s step-end both; }
+@keyframes plain { 0%, 46% { font-weight: 600; } 47%, 100% { font-weight: 400; } }
+@keyframes tap { 0%, 22% { transform: scale(1); filter: none; } 28% { transform: scale(.93); filter: brightness(.85); } 34%, 100% { transform: scale(1); filter: none; } }
+@keyframes fold { 0%, 36% { max-height: 120px; opacity: 1; } 54%, 100% { max-height: 0; opacity: 0; } }
+@keyframes out { 0%, 36% { opacity: 1; } 46%, 100% { opacity: 0; } }
+@keyframes in { 0%, 44% { opacity: 0; transform: translateY(3px); } 56%, 100% { opacity: 1; transform: none; } }
+.replay { margin-top: 10px; font: 500 .8125rem/1 var(--f); color: var(--action); background: none; border: 0; padding: 6px 0; cursor: pointer; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 342px); gap: 56px; align-items: center; }
+.split.flip { grid-template-columns: minmax(0, 342px) minmax(0, 1fr); }
+.split.flip .vis { order: -1; }
+.split .txt { display: grid; gap: 14px; max-width: 32rem; }
+.split .txt p { color: var(--muted); font-size: 1.0625rem; }
+.split .txt h2 + p { font-size: 1.1875rem; }
+
+.app { background: var(--screen); border-radius: 26px; box-shadow: var(--shadow); padding: calc(14px * var(--u)) calc(20px * var(--u)) calc(4px * var(--u)); border: 1px solid var(--hairline); }
+.app .bar { display: flex; justify-content: space-between; align-items: center; }
+.app .pl { height: calc(44px * var(--u)); border-radius: 999px; background: var(--screen); box-shadow: var(--soft-shadow); display: flex; align-items: center; color: var(--action); }
+.app .pl.mk { width: calc(64px * var(--u)); padding-left: calc(12px * var(--u)); }
+.app .pl.mk svg { width: calc(30px * var(--u)); height: calc(22px * var(--u)); }
+.app .pl.tl3 { gap: calc(20px * var(--u)); padding: 0 calc(16px * var(--u)); }
+.app .pl.tl3 svg { width: calc(20px * var(--u)); height: calc(20px * var(--u)); stroke-width: 2; }
+.app h5 { margin: calc(20px * var(--u)) 0 calc(12px * var(--u)); font-size: calc(34px * var(--u)); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.app h5 span { color: var(--muted); font-weight: 400; font-size: calc(24px * var(--u)); }
+.lc { display: flex; flex-wrap: wrap; gap: calc(8px * var(--u)); }
+.lc + .lc { margin-top: calc(8px * var(--u)); }
+.lc span { height: calc(34px * var(--u)); padding: 0 calc(14px * var(--u)); border-radius: 999px; border: 1px solid var(--chip-border); display: inline-flex; align-items: center; gap: calc(6px * var(--u)); font-size: calc(17px * var(--u)); white-space: nowrap; }
+.lc span em { font-style: normal; color: var(--muted); }
+.lc span.on { background: var(--ink); color: var(--screen); border-color: transparent; }
+.lc span.on em { color: inherit; opacity: .7; }
+.lc .av { width: calc(22px * var(--u)); height: calc(22px * var(--u)); font-size: calc(12px * var(--u)); }
+
+.trust { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.trust ul { list-style: none; margin: 0; padding: 0; border-radius: 16px; background: var(--card); overflow: hidden; }
+.trust li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px 16px; }
+.trust li + li { border-top: 1px solid var(--hairline); }
+.tick { color: var(--ok); font-weight: 700; font-size: 1.0625rem; line-height: 1.47; text-align: center; }
+
+.beta-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: b; }
+.beta-steps li { counter-increment: b; display: grid; gap: 10px; align-content: start; padding: 20px; border-radius: 16px; background: var(--sheet); }
+.beta-steps li::before { content: counter(b); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--action-fill); color: var(--action); font-weight: 700; font-size: .9375rem; }
+.beta-note { margin-top: 20px; max-width: 40rem; color: var(--muted); }
+
+.faq { display: grid; max-width: 46rem; border-radius: 16px; background: var(--card); overflow: hidden; }
+.faq details { padding: 16px 18px; }
+.faq details + details { border-top: 1px solid var(--hairline); }
+.faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "›"; color: var(--muted); font-size: 1.25rem; line-height: 1; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(90deg); }
+.faq details p { margin-top: 8px; color: var(--muted); max-width: 40rem; }
+
+.final .wrap { display: grid; gap: 18px; }
+.final .note { max-width: 24rem; }
+.cta-row { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+
+footer { padding-block: 28px 44px; border-top: 1px solid var(--hairline); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; color: var(--muted); font-size: .875rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scr, .scr.on { transition: none; }
+  .faq summary::after { transition: none; }
+  .buy.play .before, .buy.play .after, .buy.play .cb.fill, .buy.play .gone { animation: none; }
+  .buy .before, .buy .gone { display: none; }
+  .buy .after { opacity: 1; }
+  .buy .n { font-weight: 400 !important; }
+  .replay { display: none; }
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .tl, .split, .split.flip { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .split.flip .vis { order: 0; }
+  .people, .trust, .beta-steps { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block: 52px; }
+}
+@media (max-width: 480px) {
+  .tl { padding: 20px 14px; }
+  .btn { width: 100%; text-align: center; }
+  .facts { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><svg viewBox="0 0 40 30" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2448E3"/><stop offset="1" stop-color="#18D8BE"/></linearGradient><linearGradient id="bmv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2448E3"/><stop offset="1" stop-color="#18D8BE"/></linearGradient></defs><circle cx="14" cy="15" r="13" fill="url(#bm)"/><path d="M9 10 19 20" stroke="#FFF" stroke-width="2.2" stroke-linecap="round"/><rect x="33" y="6" width="3.4" height="18" rx="1.7" fill="url(#bmv)"/></svg>Armadietto</a>
+    <a class="jump" href="#iscriviti">Lista d'attesa</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="titolo">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="label" data-dopo="App per iPhone · in arrivo">App per iPhone · beta su invito</span>
+          <h1 id="titolo">Sai quando finiscono le medicine di casa, <em>senza contarle.</em></h1>
+          <p class="lead">Inquadri la scatola e dici come la prendi. Armadietto ti dice il giorno in cui finisce e ti avvisa prima, anche per le medicine di chi assisti.</p>
+          <p class="offer" data-dopo="Le iscrizioni alla beta sono chiuse. Lascia l'email e ti scriviamo quando Armadietto arriva sull'App Store.">Beta su invito per un gruppo piccolo: iscriviti entro il 15 dicembre.</p>
+
+          <form class="signup" id="iscriviti" method="post" action="#iscriviti" novalidate>
+            <div class="field-row">
+              <label for="email" class="hp">Email</label>
+              <input id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" placeholder="La tua email" required>
+              <button class="btn" type="submit" data-dopo="Avvisami quando esce">Voglio l'invito</button>
+            </div>
+            <input type="hidden" name="BETA" value="1">
+            <label class="check"><input type="checkbox" name="OPT_IN" value="1" id="consenso" required><span>Ho letto l'<a href="privacy.html">informativa</a> e voglio le email su Armadietto.</span></label>
+            <div class="hp" aria-hidden="true"><label for="sito">Lascia vuoto</label><input id="sito" name="email_address_check" type="text" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="locale" value="it">
+            <p class="small" data-dopo="Gratis · Solo iPhone, per ora · Una sola email, quando esce">Gratis · Solo iPhone, per ora · Due email in tutto: l'invito e l'uscita</p>
+            <p class="status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="done" hidden>
+            <strong>Ci sei quasi.</strong>
+            <p>Ti abbiamo mandato una mail: apri il link per confermare l'iscrizione. Se non la trovi, guarda nello spam.</p>
+            <p class="ask">Lo dici a chi si occupa delle medicine con te?</p>
+            <button class="btn quiet share" type="button">Condividi la pagina</button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="phone" role="img" aria-label="Il primo avvio di Armadietto. Inquadri una scatola di Ramipril 5 mg e la riconosce: scadenza marzo 2028, confezione da 28, lette dalla scatola. Poi scegli come la prendi, a orari fissi, ogni giorno. La risposta: finisce il 7 febbraio, promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima. Sotto, «Sì, avvisami» e «Non ora».">
+            <div class="screen" aria-hidden="true">
+              <div class="scr scan on">
+                <div class="nav"><span class="back"><svg class="ico" viewBox="0 0 10 16"><path d="M8 1.5 1.8 8 8 14.5"/></svg></span><span class="seg"><i></i><i></i><i class="off"></i></span><span class="skip">Salta</span></div>
+                <div class="q">Inquadra il davanti<br>della scatola</div>
+                <div class="qs">Dove c'è il nome: leggo nome e scadenza e ti dico quando finisce.</div>
+                <div class="camnote"><svg class="ico" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.4l1.5-2.2h6.2L16.6 7H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/><circle cx="12" cy="12.8" r="3.4"/></svg><span>Ti chiedo la fotocamera solo per leggere la scatola: la foto non si salva e non esce dal telefono.</span></div>
+                <div class="cam">
+                  <div class="vf"></div>
+                  <div class="scanline"></div>
+                  <span class="expand"><svg class="ico" viewBox="0 0 16 16"><path d="M2.5 7V2.5H7M2.5 2.5 7 7M13.5 9v4.5H9M13.5 13.5 9 9"/></svg></span>
+                  <div class="pack"><b>Ramipril</b><span>5 mg · 28 compresse</span><i>SCAD. 03/2028</i></div>
+                  <div class="light"></div>
+                  <div class="open"></div>
+                  <div class="face">
+                    <svg class="chk ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg>
+                    <h5>Ramipril</h5>
+                    <div class="sub">ramipril · compressa · 5 mg</div>
+                    <div class="rd"><span>Letto dalla scatola</span><span>Scad. marzo 2028 ·<br>Confezione da 28</span></div>
+                    <div class="vb2"><span class="no">Non è questo</span><span class="go">Continua</span></div>
+                  </div>
+                </div>
+                <div class="search"><svg class="ico" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5"/><path d="m11 11 3.5 3.5"/></svg>Oppure cerca per nome</div>
+              </div>
+
+              <div class="scr box">
+                <div class="nav"><span class="back"><svg class="ico" viewBox="0 0 10 16"><path d="M8 1.5 1.8 8 8 14.5"/></svg></span><span class="seg"><i></i><i></i><i></i></span><span class="skip">Salta</span></div>
+                <div class="boxcard">
+                  <div class="bt">Ramipril 5 mg</div>
+                  <div class="lst">
+                    <div class="grp">
+                      <div class="gr"><span>Confezione</span><em><svg class="ico cmi" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.4l1.5-2.2h6.2L16.6 7H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/><circle cx="12" cy="12.8" r="3.4"/></svg>28 compresse<svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></em></div>
+                      <div class="gr"><span>Scadenza</span><em><svg class="ico cmi" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.4l1.5-2.2h6.2L16.6 7H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/><circle cx="12" cy="12.8" r="3.4"/></svg>marzo 2028<svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></em></div>
+                      <div class="gr"><span>Scatole</span><em>1 scatola<span class="stp"><i>−</i><i>+</i></span></em></div>
+                    </div>
+                    <div class="hdr">Come lo prendi</div>
+                    <div class="chips2 c1"><span class="on">A orari fissi</span><span>A scalare</span><span>Al bisogno</span></div>
+                    <div class="hdr">Ogni quanto</div>
+                    <div class="chips2 c2 lite"><span class="on">Ogni giorno</span><span>Giorni alterni</span><span>Alcuni giorni</span><span>Ogni N ore</span></div>
+                  </div>
+                  <div class="bottom">
+                    <div class="fab"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg><div><b>Finisce il 7 febbraio</b><span class="g">Promemoria il 28 gennaio per la ricetta</span><small>7 giorni lavorativi prima · lo cambi in Notifiche</small></div></div>
+                    <span class="pbtn">Sì, avvisami</span>
+                    <span class="later">Non ora</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="hero-steps">
+            <li><button type="button" data-i="0"><span>1</span>Inquadri la scatola</button></li>
+            <li><button type="button" data-i="1"><span>2</span>Dici come la prendi</button></li>
+            <li><button type="button" data-i="2"><span>3</span>Sai quando finisce</button></li>
+          </ol>
+        </div>
+      </div>
+
+      <ul class="facts">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5.5A1.5 1.5 0 0 1 5.5 4H7M17 4h1.5A1.5 1.5 0 0 1 20 5.5V7M20 17v1.5a1.5 1.5 0 0 1-1.5 1.5H17M7 20H5.5A1.5 1.5 0 0 1 4 18.5V17M8 12h8"/></svg>Riconosce le scatole dal catalogo dei farmaci di AIFA</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c.8-3.4 3.6-5.5 7-5.5s6.2 2.1 7 5.5"/></svg>Non serve un account</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>I dati restano sul tuo iPhone</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="perchi">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Ti riconosci?</span>
+        <h2 id="perchi">Ci stai attento. Ma ti pesa.</h2>
+      </div>
+      <div class="people">
+        <div class="person">
+          <span class="person-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.2 8.1l5.6 8"/></svg></span>
+          <h3>Prendi una terapia ogni giorno</h3>
+          <p>Non resti mai senza perché ci pensi tu: conti le compresse, controlli le scatole, anche quando stai bene.</p>
+        </div>
+        <div class="person">
+          <span class="person-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="17" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M12 10.5v6M9 13.5h6"/></svg></span>
+          <h3>Tieni le medicine per quando servono</h3>
+          <p>Hai sempre il dubbio che l'antidolorifico non ci sia, o che sia scaduto da mesi.</p>
+        </div>
+        <div class="person">
+          <span class="person-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M15.6 14.4c2.3-.2 4.2 1.3 4.9 4.1"/></svg></span>
+          <h3>Ti occupi anche di qualcun altro</h3>
+          <p>Compri tu le sue medicine, ma non sai mai quante ne restano. Così ci pensi anche quando non siete insieme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="tempo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Come funziona</span>
+        <h2 id="tempo">Lo fai una volta. Poi ci pensa lui.</h2>
+        <p class="lead">Un mese con una scatola di Ramipril da 28 compresse, una al giorno.</p>
+      </div>
+      <ol class="timeline">
+        <li class="tl">
+          <div class="txt">
+            <span class="when"><i>1</i>Lunedì 11 gennaio</span>
+            <h3>Inquadri la scatola.</h3>
+            <p>Legge nome, dosaggio e scadenza. Tu dici come la prendi, e sai subito il giorno in cui finisce e quando ti avviserà.</p>
+          </div>
+          <div class="vis">
+            <div class="card ansr" role="img" aria-label="Ramipril 5 mg. Finisce il 7 febbraio. Promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima, lo cambi in Notifiche. Sotto, «Sì, avvisami» e «Non ora».">
+              <div aria-hidden="true">
+                <div class="bt">Ramipril 5 mg</div>
+                <div class="fab"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg><div><b>Finisce il 7 febbraio</b><span class="g">Promemoria il 28 gennaio per la ricetta</span><small>7 giorni lavorativi prima · lo cambi in Notifiche</small></div></div>
+                <span class="pbtn">Sì, avvisami</span>
+                <span class="later">Non ora</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl">
+          <div class="txt">
+            <span class="when"><i>2</i>Giovedì 28 gennaio</span>
+            <h3>Ti arriva l'avviso.</h3>
+            <p>Giorni prima che finisca: di solito 7 giorni lavorativi, o quanti ne scegli tu. Se serve la ricetta te lo dice, così hai il tempo di chiederla.</p>
+          </div>
+          <div class="vis">
+            <div class="lock" role="img" aria-label="La notifica sulla schermata di blocco, giovedì 28 gennaio alle 9:00: Ramipril 5 mg finisce il 7 febbraio. Scorte, ne restano 10. Serve la ricetta: chiedila al medico.">
+              <span class="day" aria-hidden="true">giovedì 28 gennaio</span>
+              <span class="clock" aria-hidden="true">9:00</span>
+              <div class="note" aria-hidden="true">
+                <img src="icon-180.png" alt="" width="30" height="30">
+                <div><b>Ramipril 5 mg finisce il 7 febbraio</b><b>Scorte · ne restano 10</b>Serve la ricetta: chiedila al medico.</div>
+                <span class="th"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3.5 19.5 7.5v9L12 20.5 4.5 16.5v-9Z"/><path d="M4.5 7.5 12 11.5l7.5-4M12 11.5v9M8.2 5.5l7.5 4"/></svg></span>
+                <span class="tm">ora</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl">
+          <div class="txt">
+            <span class="when"><i>3</i>Lo stesso giorno</span>
+            <h3>Chiedi la ricetta in dieci secondi.</h3>
+            <p>Il messaggio per il medico è già scritto: il medicinale, per quanti giorni ne hai ancora, la tua firma. Lo mandi con Messaggi o Mail, oppure lo copi dove scrivi al medico.</p>
+            <p>Se altre medicine con ricetta finiscono entro un mese, le chiedi nello stesso messaggio.</p>
+          </div>
+          <div class="vis">
+            <div class="doc" role="img" aria-label="Il foglio «Scrivi al medico»: le ricette di «Casa», in un messaggio. Medico: dottoressa Rinaldi, dai Contatti. Spuntato Ramipril 5 mg, finisce il 7 febbraio, 1 al giorno. Il messaggio: «Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia». Si manda con Messaggi, Mail o Copia.">
+              <div aria-hidden="true">
+                <div class="grab"></div>
+                <h5>Scrivi al medico</h5>
+                <div class="sb">Le ricette di «Casa», in un messaggio</div>
+                <div class="pc">
+                  <div class="dr"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c.8-3.4 3.6-5.5 7-5.5s6.2 2.1 7 5.5"/></svg><div><b>Dottoressa Rinaldi</b><span class="ft">Medico di «Casa» · dai Contatti</span></div><svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></div>
+                  <div class="dv"></div>
+                  <div class="mr"><span class="ck"><svg class="ico" viewBox="0 0 12 12"><path d="m2.5 6.3 2.3 2.2L9.5 3.5"/></svg></span><div><b>Ramipril 5 mg</b><span class="ft">Finisce il 7 febbraio · 1 al giorno</span></div><span></span></div>
+                </div>
+                <div class="mc">
+                  <div class="mh"><span>Messaggio</span><span>Modifica</span></div>
+                  <div class="mt">Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia</div>
+                  <div class="fr"><span>Firma</span><span>Giulia</span></div>
+                </div>
+                <div class="tiles">
+                  <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/></svg>Messaggi</span>
+                  <span><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12.5" rx="2.5"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>Mail</span>
+                  <span><svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12" rx="2.5"/><path d="M15.5 8V6.5A2.5 2.5 0 0 0 13 4H7a2.5 2.5 0 0 0-2.5 2.5v7A2.5 2.5 0 0 0 7 16h1"/></svg>Copia</span>
+                </div>
+                <div class="fn">Con Messaggi o Mail li segno come chiesti da sola. Con Copia, tocca «Ricetta» quando l'hai mandato.</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl">
+          <div class="txt">
+            <span class="when"><i>4</i>Venerdì 29 gennaio, in farmacia</span>
+            <h3>Un tocco, e il conto riparte.</h3>
+            <p>«L'ho comprata», anche dalla notifica. La scorta si aggiorna da sola, e il prossimo avviso pure.</p>
+          </div>
+          <div class="vis">
+            <div class="card list-card buy" role="img" aria-label="La riga del Ramipril 5 mg: circa 9 compresse, basta per 9 giorni, ricetta chiesta ieri. Tocchi «L'ho comprata» e diventa 37 compresse, basta per 37 giorni.">
+              <div aria-hidden="true">
+                <div class="bp">Basta per</div>
+                <div class="lrow fix">
+                  <span class="ri"></span>
+                  <div class="rb">
+                    <div class="rh">
+                      <span class="t"><span class="n">Ramipril</span> <span class="ds">5 mg</span></span>
+                      <span class="d swap"><span class="before warn">9 giorni</span><span class="after">37 giorni</span></span>
+                    </div>
+                    <div class="l swap"><span class="before warn">≈ 9 compresse</span><span class="after">37 compresse</span></div>
+                    <div class="come">1 compressa<span class="sp"></span><svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.2"/></svg>8:00</div>
+                    <div class="gone">
+                      <div class="btns"><span class="cb fill"><svg class="ico" viewBox="0 0 24 24"><path d="M5.5 8.5h13l-1 11.5h-11L5.5 8.5Z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>L'ho comprata</span><span class="cb gray">L'ho prenotata</span></div>
+                      <div class="step">Ricetta chiesta ieri</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="replay" type="button" aria-label="Rivedi il tocco su «L'ho comprata»">Rivedi</button>
+          </div>
+        </li>
+      </ol>
+      <div class="cta-row"><a class="btn" href="#iscriviti" data-dopo="Avvisami quando esce">Voglio l'invito</a></div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="persone">
+    <div class="wrap split">
+      <div class="txt">
+        <span class="label">Per chi assisti</span>
+        <h2 id="persone">Le medicine di mamma, accanto alle tue.</h2>
+        <p>A ogni scatola dici per chi è. Ognuno ha il suo colore, i promemoria delle dosi portano il suo nome, e vedi le scorte di tutta la casa in una lista, che viviate insieme o no.</p>
+        <p>Se due persone prendono qualcosa alla stessa ora, ti arriva una notifica sola.</p>
+      </div>
+      <div class="vis">
+        <div class="app" role="img" aria-label="La lista «Medicinali» con tre persone: Giulia, Luca e Mamma. Il Ramipril di Mamma basta per 6 giorni, col bottone «Chiedi ricetta». La Cetirizina di Luca basta per 12 giorni, la Metformina di Mamma per 26, la Levotiroxina di Giulia per 40. In fondo il Paracetamolo, al bisogno.">
+          <div aria-hidden="true">
+            <div class="bar">
+              <span class="pl mk"><svg viewBox="0 0 40 30"><defs><linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2448E3"/><stop offset="1" stop-color="#18D8BE"/></linearGradient><linearGradient id="bm2v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2448E3"/><stop offset="1" stop-color="#18D8BE"/></linearGradient></defs><circle cx="14" cy="15" r="13" fill="url(#bm2)"/><path d="M9 10 19 20" stroke="#FFF" stroke-width="2.2" stroke-linecap="round"/><rect x="33" y="6" width="3.4" height="18" rx="1.7" fill="url(#bm2v)"/></svg></span>
+              <span class="pl tl3"><svg class="ico" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><svg class="ico" viewBox="0 0 24 24"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 1.5H5l1.5-1.5ZM10 20.5a2 2 0 0 0 4 0"/></svg></span>
+            </div>
+            <h5>Medicinali <span>5</span></h5>
+            <div class="lc"><span class="on">Tutti <em>5</em></span><span>In terapia <em>4</em></span><span>Al bisogno <em>1</em></span></div>
+            <div class="lc"><span><i class="av p0">G</i>Giulia <em>2</em></span><span><i class="av p1">L</i>Luca <em>1</em></span><span><i class="av p2">M</i>Mamma <em>2</em></span></div>
+            <div class="bp">Basta per</div>
+            <div class="lrow fix">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Ramipril</span> <span class="ds">5 mg</span></span><span class="d warn">6 giorni</span></div>
+                <div class="l warn">≈ 6 compresse</div>
+                <div class="come"><i class="av p2">M</i>1 compressa<span class="sp"></span><svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.2"/></svg>8:00</div>
+                <div class="btns"><span class="cb fill"><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/></svg>Chiedi ricetta</span></div>
+              </div>
+            </div>
+            <div class="lrow">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Cetirizina</span> <span class="ds">10 mg</span></span><span class="d">12 giorni</span></div>
+                <div class="l">≈ 12 compresse</div>
+                <div class="come"><i class="av p1">L</i>1 compressa<span class="sp"></span><svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.2"/></svg>21:00</div>
+              </div>
+            </div>
+            <div class="lrow">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Metformina</span> <span class="ds">500 mg</span></span><span class="d">26 giorni</span></div>
+                <div class="l">≈ 52 compresse</div>
+                <div class="come"><i class="av p2">M</i>1 compressa<span class="sp"></span><svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.2"/></svg>8:00 · 20:00</div>
+              </div>
+            </div>
+            <div class="lrow">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Levotiroxina</span> <span class="ds">50 mcg</span></span><span class="d">40 giorni</span></div>
+                <div class="l">≈ 40 compresse</div>
+                <div class="come"><i class="av p0">G</i>1 compressa<span class="sp"></span><svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5"/><path d="M7 4v3l2 1.2"/></svg>7:00</div>
+              </div>
+            </div>
+            <div class="lrow">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Paracetamolo</span> <span class="ds">500 mg</span></span></div>
+                <div class="l">20 compresse</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="scorta">
+    <div class="wrap split flip">
+      <div class="txt">
+        <span class="label">Le medicine di scorta</span>
+        <h2 id="scorta">Quando serve, c'è. Ed è buona.</h2>
+        <p>L'antidolorifico, l'antistaminico, lo sciroppo dei bambini: Armadietto ti dice quando ne resta poco e cosa sta per scadere, prima che scada.</p>
+        <p>Se di una scatola non hai segnato la scadenza, te lo fa notare e la legge dalla scatola.</p>
+      </div>
+      <div class="vis">
+        <div class="card list-card" role="img" aria-label="Due medicinali al bisogno da sistemare: l'Ibuprofene 200 mg scade a fine febbraio, 12 compresse, col bottone «L'ho comprata»; il Paracetamolo 500 mg è senza scadenza, 20 compresse, col bottone «Leggi la scadenza».">
+          <div aria-hidden="true">
+            <div class="lrow fix">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Ibuprofene</span> <span class="ds">200 mg</span></span></div>
+                <div class="l"><span class="st">Scade a fine febbraio</span> · 12 compresse</div>
+                <div class="btns"><span class="cb fill"><svg class="ico" viewBox="0 0 24 24"><path d="M5.5 8.5h13l-1 11.5h-11L5.5 8.5Z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>L'ho comprata</span></div>
+              </div>
+            </div>
+            <div class="lrow fix">
+              <span class="ri"></span>
+              <div class="rb">
+                <div class="rh"><span class="t"><span class="n">Paracetamolo</span> <span class="ds">500 mg</span></span></div>
+                <div class="l"><span class="st">Senza scadenza</span> · 20 compresse</div>
+                <div class="btns"><span class="cb fill"><svg class="ico" viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M8 9.5h8M8 12h8M8 14.5h5"/></svg>Leggi la scadenza</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="dati">
+    <div class="wrap trust">
+      <div class="section-head" style="margin-bottom: 0">
+        <span class="label">I tuoi dati</span>
+        <h2 id="dati">I nomi e le medicine restano sul tuo iPhone.</h2>
+        <p class="lead">E nel tuo iCloud. Noi non li vediamo, e non serve un account.</p>
+      </div>
+      <ul>
+        <li><span class="tick">✓</span><span>Funziona anche offline.</span></li>
+        <li><span class="tick">✓</span><span>Niente pubblicità. Le statistiche d'uso solo se dici sì.</span></li>
+        <li><span class="tick">✓</span><span>Esporti tutto quando vuoi, in un file tuo.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="solo-beta" aria-labelledby="beta">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">La beta</span>
+        <h2 id="beta">Cosa vuol dire entrare nella beta.</h2>
+      </div>
+      <ol class="beta-steps">
+        <li><h3>Ti scriviamo con l'invito.</h3></li>
+        <li><h3>Installi Armadietto con TestFlight,</h3><p class="small">l'app di Apple per provare le app prima dell'uscita.</p></li>
+        <li><h3>Lo usi con le tue scatole vere</h3><p class="small">e ci dici cosa non va, dal bottone «Invia feedback».</p></li>
+      </ol>
+      <p class="beta-note">Serve un iPhone con iOS 17 o successivo. È una beta: qualcosa può non funzionare ancora, ed è per questo che ci serve il tuo parere.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="domande">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Domande</span>
+        <h2 id="domande">Prima di iscriverti.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Devo inserire tutte le medicine a mano?</summary>
+          <p>No: inquadri la scatola e legge nome, dosaggio e scadenza. Se non la riconosce, la cerchi per nome.</p>
+        </details>
+        <details>
+          <summary>Quando esce?</summary>
+          <p data-dopo="La beta su iPhone è partita con un gruppo piccolo e le iscrizioni alla beta sono chiuse. Chi è in lista riceve la mail quando Armadietto arriva sull'App Store.">La beta su iPhone parte in questi giorni con un gruppo piccolo. Chi si iscrive entro il 15 dicembre riceve l'invito, poi la mail quando Armadietto arriva sull'App Store. Chi si iscrive dopo riceve solo la mail dell'uscita.</p>
+        </details>
+        <details>
+          <summary>Quanto costa?</summary>
+          <p>Armadietto è gratis per la tua casa, con tutte le medicine che vuoi. A pagamento ci saranno solo le funzioni per condividere con altre persone.</p>
+        </details>
+        <details>
+          <summary>C'è per Android?</summary>
+          <p>Per ora solo per iPhone. Se usi Android iscriviti lo stesso: ti scriviamo quando c'è.</p>
+        </details>
+        <details>
+          <summary>Sostituisce il medico o il farmacista?</summary>
+          <p>No. Armadietto ti aiuta a tenere in ordine scorte, scadenze e promemoria. Per dosi e terapie fanno fede il tuo medico e il foglietto illustrativo.</p>
+        </details>
+        <details>
+          <summary>Cosa fate con la mia email?</summary>
+          <p>La usiamo solo per scriverti di Armadietto: l'invito alla beta e l'uscita. Niente altro, e ti disiscrivi con un tocco. I dettagli sono nell'<a href="privacy.html">informativa</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" aria-labelledby="ultima">
+    <div class="wrap">
+      <div class="note" aria-hidden="true">
+        <img src="icon-180.png" alt="" width="30" height="30">
+        <div><b>Ramipril 5 mg finisce il 7 febbraio</b><b>Scorte · ne restano 10</b>Serve la ricetta: chiedila al medico.</div>
+        <span class="th"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3.5 19.5 7.5v9L12 20.5 4.5 16.5v-9Z"/><path d="M4.5 7.5 12 11.5l7.5-4M12 11.5v9M8.2 5.5l7.5 4"/></svg></span>
+        <span class="tm">ora</span>
+      </div>
+      <h2 id="ultima">Togliti questo pensiero.</h2>
+      <p class="lead" data-dopo="Ti scriviamo quando Armadietto arriva sull'App Store. Niente di più.">Per entrare nella beta, iscriviti entro il 15 dicembre. Ti scriviamo due volte: per l'invito e per l'uscita.</p>
+      <form class="signup" id="iscriviti2" method="post" action="#iscriviti2" novalidate>
+        <div class="field-row">
+          <label for="email2" class="hp">Email</label>
+          <input id="email2" name="EMAIL" type="email" autocomplete="email" inputmode="email" placeholder="La tua email" required>
+          <button class="btn" type="submit" data-dopo="Avvisami quando esce">Voglio l'invito</button>
+        </div>
+        <label class="check"><input type="checkbox" name="OPT_IN" value="1" id="consenso2" required><span>Ho letto l'<a href="privacy.html">informativa</a> e voglio le email su Armadietto.</span></label>
+        <div class="hp" aria-hidden="true"><label for="sito2">Lascia vuoto</label><input id="sito2" name="email_address_check" type="text" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" name="BETA" value="1">
+        <input type="hidden" name="locale" value="it">
+        <p class="small">Gratis · Solo iPhone, per ora</p>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+      <div class="done" hidden>
+        <strong>Ci sei quasi.</strong>
+        <p>Ti abbiamo mandato una mail: apri il link per confermare l'iscrizione. Se non la trovi, guarda nello spam.</p>
+        <p class="ask">Lo dici a chi si occupa delle medicine con te?</p>
+        <button class="btn quiet share" type="button">Condividi la pagina</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Armadietto · le medicine di casa</span>
+    <a href="privacy.html">Informativa privacy</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  if (Date.now() < Date.parse("2026-12-15T23:00:00Z")) return;
+  document.querySelectorAll("[data-dopo]").forEach(function (el) { el.textContent = el.getAttribute("data-dopo"); });
+  document.querySelectorAll('[name="BETA"]').forEach(function (el) { el.value = "0"; });
+  document.querySelectorAll(".solo-beta").forEach(function (el) { el.hidden = true; });
+})();
+</script>
+
+<script>
+(function () {
+  var visual = document.querySelector(".hero-visual");
+  if (!visual) return;
+  var phone = visual.querySelector(".phone");
+  var screens = [].slice.call(visual.querySelectorAll(".scr"));
+  var box = visual.querySelector(".scr.box");
+  var buttons = [].slice.call(visual.querySelectorAll(".hero-steps button"));
+  var schermo = [0, 1, 1];
+  var tempi = [8000, 4500, 5500];
+  var muove = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fermo = !muove;
+  var visibile = false;
+  var timer = null;
+  var i = muove ? 0 : 2;
+  if (muove) visual.classList.add("anim");
+  function mostra(n, manuale) {
+    i = n;
+    screens.forEach(function (s) { s.classList.remove("on"); });
+    box.classList.remove("s2", "s3");
+    void phone.offsetWidth;
+    screens[schermo[n]].classList.add("on");
+    if (n === 1) box.classList.add("s2");
+    if (n === 2) box.classList.add("s3");
+    buttons.forEach(function (b, k) {
+      b.setAttribute("aria-pressed", k === n ? "true" : "false");
+      b.style.setProperty("--dur", tempi[k] + "ms");
+    });
+    clearTimeout(timer);
+    if (manuale) fermo = true;
+    var gira = !fermo && visibile;
+    visual.classList.toggle("auto", gira);
+    if (gira) timer = setTimeout(function () { mostra((i + 1) % buttons.length); }, tempi[n]);
+  }
+  buttons.forEach(function (b, k) {
+    b.addEventListener("click", function () { mostra(k, true); });
+  });
+  mostra(i);
+  if (!("IntersectionObserver" in window)) { visibile = true; mostra(i); return; }
+  new IntersectionObserver(function (entries) {
+    var ora = entries[0].isIntersecting;
+    if (ora === visibile) return;
+    visibile = ora;
+    mostra(i);
+  }, { threshold: 0.35 }).observe(phone);
+})();
+</script>
+
+<script>
+(function () {
+  var card = document.querySelector(".card.buy");
+  if (!card) return;
+  var rivedi = card.parentNode.querySelector(".replay");
+  function play() {
+    card.classList.remove("play");
+    void card.offsetWidth;
+    card.classList.add("play");
+  }
+  if (rivedi) rivedi.addEventListener("click", play);
+  if (!("IntersectionObserver" in window)) { play(); return; }
+  var io = new IntersectionObserver(function (entries) {
+    if (entries.some(function (x) { return x.isIntersecting; })) { io.disconnect(); setTimeout(play, 600); }
+  }, { threshold: 0.7 });
+  io.observe(card);
+})();
+</script>
+
+<script>
+(function () {
+  var meta = document.querySelector('meta[name="waitlist-endpoint"]');
+  var endpoint = meta ? meta.getAttribute("content").trim() : "";
+
+  function errore(stato, testo, campo) {
+    stato.textContent = testo;
+    stato.className = "status err";
+    if (campo) campo.focus();
+  }
+
+  document.addEventListener("submit", function (e) {
+    var form = e.target;
+    if (!form.matches("form.signup")) return;
+    var email = form.querySelector('[name="EMAIL"]');
+    var consenso = form.querySelector('[name="OPT_IN"]');
+    var invia = form.querySelector('button[type="submit"]');
+    var fatto = form.nextElementSibling;
+    var stato = form.querySelector(".status");
+    e.preventDefault();
+    var valore = email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valore)) {
+      errore(stato, "Scrivi un'email valida, per esempio nome@gmail.com.", email);
+      return;
+    }
+    if (!consenso.checked) {
+      errore(stato, "Per iscriverti spunta la casella dell'informativa.", consenso);
+      return;
+    }
+    if (form.querySelector('[name="email_address_check"]').value) return;
+    if (!endpoint) {
+      stato.textContent = "Anteprima: il modulo funziona quando la pagina è pubblicata con il servizio delle email.";
+      stato.className = "status ok";
+      return;
+    }
+    invia.disabled = true;
+    stato.textContent = "Invio…";
+    stato.className = "status";
+    var url = endpoint + (endpoint.indexOf("?") < 0 ? "?" : "&") + "isAjax=1";
+    fetch(url, { method: "POST", body: new FormData(form) })
+      .then(function (r) {
+        if (!r.ok) throw new Error("http");
+        return r.json().catch(function () { return {}; });
+      })
+      .then(function (esito) {
+        if (esito && esito.success === false) throw new Error("rifiutata");
+        form.hidden = true;
+        fatto.hidden = false;
+        fatto.setAttribute("tabindex", "-1");
+        fatto.focus();
+      })
+      .catch(function () {
+        invia.disabled = false;
+        errore(stato, "Non siamo riusciti a iscriverti. Controlla la connessione e riprova tra poco.");
+      });
+  });
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".share");
+    if (!b) return;
+    var dati = {
+      title: "Armadietto",
+      text: "Armadietto ti dice quando finiscono le medicine di casa e ti avvisa prima. C'è la lista d'attesa della beta per iPhone.",
+      url: location.href.split("#")[0]
+    };
+    if (navigator.share) {
+      navigator.share(dati).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(dati.url).then(function () { b.textContent = "Link copiato"; });
+    }
+  });
+})();
+</script>
+</body>
+</html>
