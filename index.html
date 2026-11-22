@@ -301,7 +301,9 @@ section { padding-block: 72px; }
 
 .card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: calc(16px * var(--u)) calc(20px * var(--u)); }
 .ansr .bt { font-size: calc(24px * var(--u)); font-weight: 700; letter-spacing: -.01em; margin: calc(6px * var(--u)) 0 calc(12px * var(--u)); }
-.ansr .fab { margin-bottom: calc(10px * var(--u)); }
+.ansr .fab { margin-bottom: calc(4px * var(--u)); }
+.posr { display: flex; justify-content: space-between; gap: 10px; padding: calc(11px * var(--u)) calc(14px * var(--u)); margin-bottom: calc(10px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--grouped); font-size: calc(15px * var(--u)); }
+.posr span:last-child { color: var(--muted); text-align: right; }
 
 .lock { border-radius: 26px; padding: 22px 10px 14px; color: #FFF; background: linear-gradient(165deg, #2448E3 0%, #0F8F80 58%, #0B3440 100%); display: grid; justify-items: center; box-shadow: var(--shadow); }
 .lock .day { font-size: 14px; font-weight: 600; opacity: .92; }
@@ -561,15 +563,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
           <div class="txt">
             <span class="when"><i>1</i>Lunedì 11 gennaio</span>
             <h3>Inquadri la scatola.</h3>
-            <p>Legge nome, dosaggio e scadenza. Tu dici come la prendi, e sai subito il giorno in cui finisce e quando ti avviserà.</p>
+            <p>Legge nome, dosaggio e scadenza, e sa già quante compresse ci sono nella confezione: non devi contarle. Tu dici solo come la prendi, e sai subito il giorno in cui finisce e quando ti avviserà.</p>
           </div>
           <div class="vis">
-            <div class="card ansr" role="img" aria-label="Ramipril 5 mg. Finisce il 7 febbraio. Promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima, lo cambi in Notifiche. Sotto, «Sì, avvisami» e «Non ora».">
+            <div class="card ansr" role="img" aria-label="Ramipril 5 mg, posologia 1 compressa alle 8:00 ogni giorno. Finisce il 7 febbraio. Promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima, lo cambi in Notifiche.">
               <div aria-hidden="true">
                 <div class="bt">Ramipril 5 mg</div>
+                <div class="posr"><span>Posologia</span><span>1 compressa · 8:00 · ogni giorno</span></div>
                 <div class="fab"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg><div><b>Finisce il 7 febbraio</b><span class="g">Promemoria il 28 gennaio per la ricetta</span><small>7 giorni lavorativi prima · lo cambi in Notifiche</small></div></div>
-                <span class="pbtn">Sì, avvisami</span>
-                <span class="later">Non ora</span>
               </div>
             </div>
           </div>
@@ -597,7 +598,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
           <div class="txt">
             <span class="when"><i>3</i>Lo stesso giorno</span>
             <h3>Chiedi la ricetta in dieci secondi.</h3>
-            <p>Il messaggio per il medico è già scritto: il medicinale, per quanti giorni ne hai ancora, la tua firma. Lo mandi con Messaggi o Mail, oppure lo copi dove scrivi al medico.</p>
+            <p>Armadietto sa quali medicine hanno bisogno della ricetta: per quelle, nell'avviso e nell'elenco trovi «Chiedi ricetta». Lo tocchi e il messaggio per il medico è già scritto: il medicinale, per quanti giorni ne hai ancora, la tua firma. Lo mandi con Messaggi o Mail, oppure lo copi dove scrivi al medico.</p>
             <p>Se altre medicine con ricetta finiscono entro un mese, le chiedi nello stesso messaggio.</p>
           </div>
           <div class="vis">
