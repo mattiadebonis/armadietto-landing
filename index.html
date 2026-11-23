@@ -115,8 +115,13 @@ p { margin: 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.pill { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 11px; border-radius: 999px; background: var(--action-fill); color: var(--action); font-weight: 600; font-size: .875rem; line-height: 1.3; }
-.pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--action); flex: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--action) 18%, transparent); }
+.pill { justify-self: start; display: inline-flex; align-items: center; gap: 10px; margin: 0 0 6px; font-size: .9375rem; line-height: 1.3; color: var(--muted); }
+.pill b { color: var(--action); font-weight: 600; }
+.pill .sep { display: inline-block; width: 1px; height: .9em; margin: 0 8px; vertical-align: -1px; background: var(--chip-border); }
+.pill i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--action); flex: none; }
+.pill i::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--action); opacity: 0; animation: ping 2.4s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(.5); opacity: .6; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pill i::after { animation: none; } }
 
 .signup { display: grid; gap: 12px; max-width: 30rem; }
 .field-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -478,7 +483,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="pill"><i></i><span data-dopo="App per iPhone · in arrivo sull'App Store">Beta su invito · iscriviti entro il 15 dicembre</span></span>
+          <p class="pill"><i></i><span data-dopo="App per iPhone · in arrivo sull'App Store"><b>Beta su invito</b> <span class="sep"></span> iscriviti entro il 15 dicembre</span></p>
           <h1 id="titolo">Le medicine non finiscono più <em>all'improvviso.</em></h1>
           <p class="lead">Inquadri la scatola e dici come la prendi. Armadietto ti dice il giorno in cui finisce e ti avvisa prima, anche per le medicine di chi assisti.</p>
 
