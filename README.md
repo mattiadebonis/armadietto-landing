@@ -9,12 +9,14 @@ d'attesa non passano da Supabase.
 
 Costruita sui momenti in cui l'app fa vedere il suo valore, nell'ordine in cui arrivano:
 
-1. **Primo schermo**: titolo, modulo e, accanto, il primo avvio animato (la scatola
-   riconosciuta, «Come lo prendi», la risposta «Finisce il… · Promemoria il…»).
+1. **Primo schermo**: titolo, modulo e, accanto, un telefono fermo sulla schermata di
+   blocco con la notifica «Ramipril 5 mg finisce il 7 febbraio». Sotto i 900 px solo la
+   notifica, senza il telefono, subito dopo il modulo. Niente animazione: i passaggi sono
+   in «Come funziona».
 2. **Ti riconosci?**: tre situazioni (terapia, scorta, chi assisti); ognuna ha la sua
    risposta più giù.
-3. **Come funziona**: un mese in quattro scene (l'inquadratura, l'avviso, il messaggio al
-   medico, «L'ho comprata»).
+3. **Come funziona**: un mese in cinque scene (l'inquadratura, la risposta «Finisce il…»,
+   l'avviso, il messaggio al medico, «L'ho comprata»).
 4. **Per chi assisti**, **Le medicine di scorta**, **I tuoi dati**, **La beta** (sparisce
    dopo il 15 dicembre), **Domande**, il modulo di nuovo.
 
@@ -39,12 +41,11 @@ tornano tra una scena e l'altra:
   contata. Non lunedì 1 febbraio: a due giorni lavorativi dalla richiesta la ricetta è
   «vecchia» (`SistemareRules.isStale`) e il bottone pieno diventa «Chiedi di nuovo».
 
-I mockup copiano l'app (Fase 82) misurata sul simulatore: il primo avvio vero (la barra dei
-passi, il mirino con la nota della fotocamera, la scatola riconosciuta, il riquadro con
-Confezione · Scadenza · Scatole, «Come lo prendi», la risposta e «Sì, avvisami» · «Non
-ora»), le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
+I mockup copiano l'app (Fase 82) misurata sul simulatore: il mirino della fotocamera con la
+scatola, il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
+blocco, le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
 capsula, il grigio col testo nero) e il foglio di `WriteToDoctorSheet`. Le misure stanno
-in `--u` (punti dell'app per pixel della pagina: 0,77 nel telefono, 0,85 nelle schede).
+in `--u` (punti dell'app per pixel della pagina: 0,85 nelle schede).
 
 Nei componenti solo principi attivi, mai nomi di marca.
 
@@ -91,12 +92,14 @@ Prima nel repo dell'app (`landing/`), spostata qui il 21/11/2026.
 
 Costruita sui momenti in cui l'app fa vedere il suo valore, nell'ordine in cui arrivano:
 
-1. **Primo schermo**: titolo, modulo e, accanto, il primo avvio animato (la scatola
-   riconosciuta, «Come lo prendi», la risposta «Finisce il… · Promemoria il…»).
+1. **Primo schermo**: titolo, modulo e, accanto, un telefono fermo sulla schermata di
+   blocco con la notifica «Ramipril 5 mg finisce il 7 febbraio». Sotto i 900 px solo la
+   notifica, senza il telefono, subito dopo il modulo. Niente animazione: i passaggi sono
+   in «Come funziona».
 2. **Ti riconosci?**: tre situazioni (terapia, scorta, chi assisti); ognuna ha la sua
    risposta più giù.
-3. **Come funziona**: un mese in quattro scene (l'inquadratura, l'avviso, il messaggio al
-   medico, «L'ho comprata»).
+3. **Come funziona**: un mese in cinque scene (l'inquadratura, la risposta «Finisce il…»,
+   l'avviso, il messaggio al medico, «L'ho comprata»).
 4. **Per chi assisti**, **Le medicine di scorta**, **I tuoi dati**, **La beta** (sparisce
    dopo il 15 dicembre), **Domande**, il modulo di nuovo.
 
@@ -121,12 +124,11 @@ tornano tra una scena e l'altra:
   contata. Non lunedì 1 febbraio: a due giorni lavorativi dalla richiesta la ricetta è
   «vecchia» (`SistemareRules.isStale`) e il bottone pieno diventa «Chiedi di nuovo».
 
-I mockup copiano l'app (Fase 82) misurata sul simulatore: il primo avvio vero (la barra dei
-passi, il mirino con la nota della fotocamera, la scatola riconosciuta, il riquadro con
-Confezione · Scadenza · Scatole, «Come lo prendi», la risposta e «Sì, avvisami» · «Non
-ora»), le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
+I mockup copiano l'app (Fase 82) misurata sul simulatore: il mirino della fotocamera con la
+scatola, il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
+blocco, le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
 capsula, il grigio col testo nero) e il foglio di `WriteToDoctorSheet`. Le misure stanno
-in `--u` (punti dell'app per pixel della pagina: 0,77 nel telefono, 0,85 nelle schede).
+in `--u` (punti dell'app per pixel della pagina: 0,85 nelle schede).
 
 Nei componenti solo principi attivi, mai nomi di marca.
 
