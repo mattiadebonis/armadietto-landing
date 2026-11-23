@@ -330,6 +330,9 @@ section { padding-block: 72px; }
 .pform div { display: flex; justify-content: space-between; gap: 10px; padding: calc(9px * var(--u)) calc(14px * var(--u)); font-size: calc(15px * var(--u)); }
 .pform div + div { border-top: 1px solid var(--hairline); }
 .pform em { font-style: normal; color: var(--muted); }
+.cform { margin-bottom: calc(14px * var(--u)); }
+.cform .hdr { margin: 0 0 6px 2px; }
+.cform .hdr ~ .hdr { margin-top: 12px; }
 .bsub { color: var(--muted); font-size: calc(15px * var(--u)); line-height: 1.4; margin-bottom: calc(14px * var(--u)); }
 .ansr .fab { margin-bottom: calc(4px * var(--u)); }
 .posr { display: flex; justify-content: space-between; gap: 10px; padding: calc(11px * var(--u)) calc(14px * var(--u)); margin-bottom: calc(6px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--grouped); font-size: calc(15px * var(--u)); }
@@ -363,7 +366,7 @@ section { padding-block: 72px; }
 .doc .mh span:last-child { color: var(--action); }
 .doc .mt { margin-top: calc(6px * var(--u)); font-size: calc(15px * var(--u)); line-height: 1.42; }
 .doc .fr { margin-top: calc(8px * var(--u)); border-top: 1px solid var(--hairline); margin-right: calc(-16px * var(--u)); padding-right: calc(16px * var(--u)); min-height: calc(44px * var(--u)); display: flex; align-items: center; justify-content: space-between; font-size: calc(15px * var(--u)); }
-.doc .tiles { margin: calc(12px * var(--u)) calc(16px * var(--u)) 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(8px * var(--u)); }
+.doc .tiles { margin: calc(12px * var(--u)) calc(16px * var(--u)) 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(8px * var(--u)); }
 .doc .tiles span { min-height: calc(64px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--group); color: var(--action); display: grid; justify-items: center; align-content: center; gap: calc(4px * var(--u)); font-size: calc(13px * var(--u)); font-weight: 600; }
 .doc .tiles svg { width: calc(24px * var(--u)); height: calc(24px * var(--u)); stroke-width: 1.5; }
 .doc .fn { padding: calc(14px * var(--u)) calc(24px * var(--u)) calc(12px * var(--u)); text-align: center; font-size: calc(13px * var(--u)); color: var(--muted); }
@@ -626,11 +629,11 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
               <div aria-hidden="true">
                 <div class="bt">Ramipril 5 mg</div>
                 <div class="bsub">28 compresse · scadenza marzo 2028</div>
-                <div class="pform">
-                  <div><span>Come lo prendi</span><em>A orari fissi</em></div>
-                  <div><span>Ogni quanto</span><em>Ogni giorno</em></div>
-                  <div><span>Alle</span><em>8:00</em></div>
-                  <div><span>Quanto</span><em>1 compressa</em></div>
+                <div class="cform">
+                  <div class="hdr">Come lo prendi</div>
+                  <div class="chips2"><span class="on">A orari fissi</span><span>A scalare</span><span>Al bisogno</span></div>
+                  <div class="hdr">Ogni quanto</div>
+                  <div class="chips2 lite"><span class="on">Ogni giorno</span><span>Giorni alterni</span><span>Alcuni giorni</span></div>
                 </div>
                 <div class="fab"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg><div><b>Finisce il 7 febbraio</b><span class="g">Promemoria il 28 gennaio per la ricetta</span><small>7 giorni lavorativi prima · lo cambi in Notifiche</small></div></div>
               </div>
@@ -660,11 +663,11 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
           <div class="txt">
             <span class="when"><i>3</i>Lo stesso giorno</span>
             <h3>Chiedi la ricetta in dieci secondi.</h3>
-            <p>Armadietto sa quali medicine hanno bisogno della ricetta: per quelle, nell'avviso e nell'elenco trovi «Chiedi ricetta». Lo tocchi e il messaggio per il medico è già scritto: il medicinale, per quanti giorni ne hai ancora, la tua firma. Lo mandi con Messaggi o Mail, oppure lo copi dove scrivi al medico.</p>
+            <p>Armadietto sa quali medicine hanno bisogno della ricetta: per quelle, nell'avviso e nell'elenco trovi «Chiedi ricetta». Lo tocchi e il messaggio per il medico è già scritto: il medicinale, per quanti giorni ne hai ancora, la tua firma. Lo mandi con WhatsApp, Messaggi o Mail, oppure lo copi.</p>
             <p>Se altre medicine con ricetta finiscono entro un mese, le chiedi nello stesso messaggio.</p>
           </div>
           <div class="vis">
-            <div class="doc" role="img" aria-label="Il foglio «Scrivi al medico»: le ricette di «Casa», in un messaggio. Medico: dottoressa Rinaldi, dai Contatti. Spuntato Ramipril 5 mg, finisce il 7 febbraio, 1 al giorno. Il messaggio: «Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia». Si manda con Messaggi, Mail o Copia.">
+            <div class="doc" role="img" aria-label="Il foglio «Scrivi al medico»: le ricette di «Casa», in un messaggio. Medico: dottoressa Rinaldi, dai Contatti. Spuntato Ramipril 5 mg, finisce il 7 febbraio, 1 al giorno. Il messaggio: «Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia». Si manda con Messaggi, WhatsApp, Mail o Copia.">
               <div aria-hidden="true">
                 <div class="grab"></div>
                 <h5>Scrivi al medico</h5>
@@ -681,10 +684,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                 </div>
                 <div class="tiles">
                   <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/></svg>Messaggi</span>
+                  <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/><path d="M9.2 9.3c.3 1.9 1.6 3.3 3.6 3.9l.9-.9 1.4.6-.3 1.2c-2.9-.1-5.6-2.6-5.9-5.4l1.1-.4.7 1.3Z"/></svg>WhatsApp</span>
                   <span><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12.5" rx="2.5"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>Mail</span>
                   <span><svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12" rx="2.5"/><path d="M15.5 8V6.5A2.5 2.5 0 0 0 13 4H7a2.5 2.5 0 0 0-2.5 2.5v7A2.5 2.5 0 0 0 7 16h1"/></svg>Copia</span>
                 </div>
-                <div class="fn">Con Messaggi o Mail li segno come chiesti da sola. Con Copia, tocca «Ricetta» quando l'hai mandato.</div>
               </div>
             </div>
           </div>
@@ -728,12 +731,12 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
     <div class="wrap split">
       <div class="txt">
         <span class="label">Per chi assisti</span>
-        <h2 id="persone">Le medicine di mamma, accanto alle tue.</h2>
-        <p>A ogni scatola dici per chi è. Ognuno ha il suo colore, i promemoria delle dosi portano il suo nome, e vedi le scorte di tutta la casa in una lista, che viviate insieme o no.</p>
+        <h2 id="persone">Le medicine di tutta la famiglia, in una lista.</h2>
+        <p>Le tue, quelle dei bambini, quelle dei genitori. A ogni scatola dici per chi è: ognuno ha il suo colore, i promemoria delle dosi portano il suo nome, e vedi le scorte di tutti insieme, che viviate sotto lo stesso tetto o no.</p>
         <p>Se due persone prendono qualcosa alla stessa ora, ti arriva una notifica sola.</p>
       </div>
       <div class="vis">
-        <div class="app" role="img" aria-label="La lista «Medicinali» con tre persone: Giulia, Luca e Mamma. Il Ramipril di Mamma basta per 6 giorni, col bottone «Chiedi ricetta». La Cetirizina di Luca basta per 12 giorni, la Metformina di Mamma per 26, la Levotiroxina di Giulia per 40. In fondo il Paracetamolo, al bisogno.">
+        <div class="app" role="img" aria-label="Le medicine di tutta la famiglia: la lista «Medicinali» con tre persone: Giulia, Luca e Mamma. Il Ramipril di Mamma basta per 6 giorni, col bottone «Chiedi ricetta». La Cetirizina di Luca basta per 12 giorni, la Metformina di Mamma per 26, la Levotiroxina di Giulia per 40. In fondo il Paracetamolo, al bisogno.">
           <div aria-hidden="true">
             <div class="bar">
               <span class="pl mk"><svg viewBox="0 0 40 30"><defs><linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6488"/><stop offset="1" stop-color="#FFB15C"/></linearGradient><linearGradient id="bm2v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6488"/><stop offset="1" stop-color="#FFB15C"/></linearGradient></defs><circle cx="14" cy="15" r="13" fill="url(#bm2)"/><path d="M9 10 19 20" stroke="#FFF" stroke-width="2.2" stroke-linecap="round"/><rect x="33" y="6" width="3.4" height="18" rx="1.7" fill="url(#bm2v)"/></svg></span>
@@ -965,7 +968,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
   var box = visual.querySelector(".scr.box");
   var buttons = [].slice.call(visual.querySelectorAll(".hero-steps button"));
   var schermo = [0, 1, 2, 3];
-  var tempi = [3000, 5400, 2600, 3200];
+  var tempi = [3000, 6800, 3800, 4400];
   var muove = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fermo = !muove;
   var visibile = false;
