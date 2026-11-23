@@ -224,9 +224,7 @@ section { padding-block: 72px; }
 .cam .pack span { font-size: 12px; color: #6E6E73; }
 .cam .pack i { position: absolute; left: 15px; bottom: 9px; font-style: normal; font-size: 10px; color: #FFF; font-weight: 600; letter-spacing: .04em; }
 .cam .scanline { position: absolute; left: 38px; right: 38px; bottom: 56px; height: 2px; background: linear-gradient(90deg, transparent, #FE8670 18%, #FE8670 82%, transparent); box-shadow: 0 0 12px 2px rgba(254,134,112,.35); opacity: .85; }
-.cam .light { position: absolute; left: 0; right: 0; height: 120px; top: 100%; background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.28), rgba(255,255,255,.9)); opacity: 0; }
-.cam .open { position: absolute; left: 50%; top: 40%; width: 800px; height: 800px; margin: -400px 0 0 -400px; border-radius: 50%; background: var(--group); transform: scale(.001); opacity: 0; }
-.cam .face { position: absolute; inset: 0; padding: 20px 20px 18px; display: flex; flex-direction: column; color: var(--ink); visibility: hidden; }
+.cam .face { position: absolute; inset: 0; padding: 20px 20px 18px; display: flex; flex-direction: column; color: var(--ink); background: var(--group); visibility: hidden; }
 .cam .chk { width: 32px; height: 32px; stroke: var(--face-green); stroke-width: 1.6; }
 .cam .face h5 { margin-top: 14px; font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
 .cam .face .sub { color: var(--muted); font-size: 14px; margin-top: 3px; }
@@ -238,20 +236,13 @@ section { padding-block: 72px; }
 .cam .vb2 .no { background: var(--chip-gray); color: var(--action); }
 .cam .vb2 .go { background: var(--action-solid); color: #FFF; }
 @media (prefers-reduced-motion: no-preference) {
-  .cam.play .scanline { animation: scan-pulse .6s ease-in-out 2; }
-  .cam.play .light { animation: scan-light .4s ease-in 1.2s both; }
-  .cam.play .open { animation: scan-open .45s cubic-bezier(.4,0,.2,1) 1.5s both; }
-  .cam.play .face { visibility: visible; }
-  .cam.play .face > * { animation: scan-face .4s cubic-bezier(.2,.8,.2,1) 1.65s both; }
-  .cam.play .face > :nth-child(2) { animation-delay: 1.7s; }
-  .cam.play .face > :nth-child(3) { animation-delay: 1.75s; }
-  .cam.play .face > :nth-child(4) { animation-delay: 1.8s; }
-  .cam.play .face > :nth-child(5) { animation-delay: 1.85s; }
+  .cam.play .scanline { animation: scan-pulse 1.2s ease-in-out; }
+  .cam.play .face { visibility: visible; animation: scan-fade .6s ease 1.1s both; }
+  .cam.play .face > * { animation: scan-rise .6s ease 1.1s both; }
 }
-@keyframes scan-pulse { 50% { opacity: .3; } }
-@keyframes scan-light { 0% { top: -120px; opacity: 1; } 95% { top: 100%; opacity: 1; } 100% { top: 100%; opacity: 0; } }
-@keyframes scan-open { 0% { transform: scale(.001); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
-@keyframes scan-face { from { opacity: 0; transform: translateY(8px); filter: blur(6px); } }
+@keyframes scan-pulse { 50% { opacity: .45; } }
+@keyframes scan-fade { from { opacity: 0; } }
+@keyframes scan-rise { from { transform: translateY(4px); } }
 
 .card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: calc(16px * var(--u)) calc(20px * var(--u)); }
 .ansr .bt { font-size: calc(24px * var(--u)); font-weight: 700; letter-spacing: -.01em; margin: calc(6px * var(--u)) 0 calc(4px * var(--u)); }
@@ -501,8 +492,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                 <div class="vf"></div>
                 <div class="pack"><b>Ramipril</b><span>5 mg · 28 compresse</span><i>SCAD. 03/2028</i></div>
                 <div class="scanline"></div>
-                <div class="light"></div>
-                <div class="open"></div>
                 <div class="face">
                   <svg class="chk ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg>
                   <h5>Ramipril</h5>
