@@ -115,7 +115,8 @@ p { margin: 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--brand-a), var(--brand-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.offer { font-weight: 600; max-width: 34rem; }
+.pill { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 11px; border-radius: 999px; background: var(--action-fill); color: var(--action); font-weight: 600; font-size: .875rem; line-height: 1.3; }
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--action); flex: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--action) 18%, transparent); }
 
 .signup { display: grid; gap: 12px; max-width: 30rem; }
 .field-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -477,10 +478,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="label" data-dopo="App per iPhone · in arrivo">App per iPhone · beta su invito</span>
+          <span class="pill"><i></i><span data-dopo="App per iPhone · in arrivo sull'App Store">Beta su invito · iscriviti entro il 15 dicembre</span></span>
           <h1 id="titolo">Le medicine non finiscono più <em>all'improvviso.</em></h1>
           <p class="lead">Inquadri la scatola e dici come la prendi. Armadietto ti dice il giorno in cui finisce e ti avvisa prima, anche per le medicine di chi assisti.</p>
-          <p class="offer" data-dopo="Le iscrizioni alla beta sono chiuse. Lascia l'email e ti scriviamo quando Armadietto arriva sull'App Store.">Beta su invito per un gruppo piccolo: iscriviti entro il 15 dicembre.</p>
 
           <form class="signup" id="iscriviti" method="post" action="#iscriviti" novalidate>
             <div class="field-row">
@@ -492,7 +492,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <label class="check"><input type="checkbox" name="OPT_IN" value="1" id="consenso" required><span>Ho letto l'<a href="privacy.html">informativa</a> e voglio le email su Armadietto.</span></label>
             <div class="hp" aria-hidden="true"><label for="sito">Lascia vuoto</label><input id="sito" name="email_address_check" type="text" tabindex="-1" autocomplete="off"></div>
             <input type="hidden" name="locale" value="it">
-            <p class="small" data-dopo="Gratis · Solo iPhone, per ora · Una sola email, quando esce">Gratis · Solo iPhone, per ora · Due email in tutto: l'invito e l'uscita</p>
             <p class="status" role="status" aria-live="polite"></p>
           </form>
           <div class="done" hidden>
