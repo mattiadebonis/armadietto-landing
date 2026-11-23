@@ -42,7 +42,8 @@ tornano tra una scena e l'altra:
   «vecchia» (`SistemareRules.isStale`) e il bottone pieno diventa «Chiedi di nuovo».
 
 I mockup copiano l'app (Fase 82) misurata sul simulatore: il mirino della fotocamera con la
-scatola, il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
+scatola e la scatola riconosciuta (si anima una volta quando arriva sullo schermo, come
+«L'ho comprata», con «Rivedi»), il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
 blocco, le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
 capsula, il grigio col testo nero) e il foglio di `WriteToDoctorSheet`. Le misure stanno
 in `--u` (punti dell'app per pixel della pagina: 0,85 nelle schede).
@@ -125,7 +126,8 @@ tornano tra una scena e l'altra:
   «vecchia» (`SistemareRules.isStale`) e il bottone pieno diventa «Chiedi di nuovo».
 
 I mockup copiano l'app (Fase 82) misurata sul simulatore: il mirino della fotocamera con la
-scatola, il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
+scatola e la scatola riconosciuta (si anima una volta quando arriva sullo schermo, come
+«L'ho comprata», con «Rivedi»), il passo «Come lo prendi» del primo avvio con la risposta «Finisce il… · Promemoria il…», la notifica sulla schermata di
 blocco, le righe di `SistemareRowView` (nome in grassetto solo con un bottone, bottoni a
 capsula, il grigio col testo nero) e il foglio di `WriteToDoctorSheet`. Le misure stanno
 in `--u` (punti dell'app per pixel della pagina: 0,85 nelle schede).

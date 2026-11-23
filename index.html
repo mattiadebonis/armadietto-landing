@@ -224,6 +224,34 @@ section { padding-block: 72px; }
 .cam .pack span { font-size: 12px; color: #6E6E73; }
 .cam .pack i { position: absolute; left: 15px; bottom: 9px; font-style: normal; font-size: 10px; color: #FFF; font-weight: 600; letter-spacing: .04em; }
 .cam .scanline { position: absolute; left: 38px; right: 38px; bottom: 56px; height: 2px; background: linear-gradient(90deg, transparent, #FE8670 18%, #FE8670 82%, transparent); box-shadow: 0 0 12px 2px rgba(254,134,112,.35); opacity: .85; }
+.cam .light { position: absolute; left: 0; right: 0; height: 120px; top: 100%; background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.28), rgba(255,255,255,.9)); opacity: 0; }
+.cam .open { position: absolute; left: 50%; top: 40%; width: 800px; height: 800px; margin: -400px 0 0 -400px; border-radius: 50%; background: var(--group); transform: scale(.001); opacity: 0; }
+.cam .face { position: absolute; inset: 0; padding: 20px 20px 18px; display: flex; flex-direction: column; color: var(--ink); visibility: hidden; }
+.cam .chk { width: 32px; height: 32px; stroke: var(--face-green); stroke-width: 1.6; }
+.cam .face h5 { margin-top: 14px; font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.cam .face .sub { color: var(--muted); font-size: 14px; margin-top: 3px; }
+.cam .rd { margin-top: auto; border-top: 1px solid var(--hairline); padding: 11px 0 13px; display: flex; justify-content: space-between; gap: 10px; font-size: 13px; line-height: 1.3; }
+.cam .rd span:first-child { color: var(--muted); white-space: nowrap; }
+.cam .rd span:last-child { text-align: right; }
+.cam .vb2 { display: grid; grid-template-columns: 108fr 130fr; gap: 8px; }
+.cam .vb2 span { height: 42px; border-radius: 10px; display: grid; place-items: center; font-weight: 600; font-size: 14px; white-space: nowrap; }
+.cam .vb2 .no { background: var(--chip-gray); color: var(--action); }
+.cam .vb2 .go { background: var(--action-solid); color: #FFF; }
+@media (prefers-reduced-motion: no-preference) {
+  .cam.play .scanline { animation: scan-pulse .6s ease-in-out 2; }
+  .cam.play .light { animation: scan-light .4s ease-in 1.2s both; }
+  .cam.play .open { animation: scan-open .45s cubic-bezier(.4,0,.2,1) 1.5s both; }
+  .cam.play .face { visibility: visible; }
+  .cam.play .face > * { animation: scan-face .4s cubic-bezier(.2,.8,.2,1) 1.65s both; }
+  .cam.play .face > :nth-child(2) { animation-delay: 1.7s; }
+  .cam.play .face > :nth-child(3) { animation-delay: 1.75s; }
+  .cam.play .face > :nth-child(4) { animation-delay: 1.8s; }
+  .cam.play .face > :nth-child(5) { animation-delay: 1.85s; }
+}
+@keyframes scan-pulse { 50% { opacity: .3; } }
+@keyframes scan-light { 0% { top: -120px; opacity: 1; } 95% { top: 100%; opacity: 1; } 100% { top: 100%; opacity: 0; } }
+@keyframes scan-open { 0% { transform: scale(.001); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes scan-face { from { opacity: 0; transform: translateY(8px); filter: blur(6px); } }
 
 .card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: calc(16px * var(--u)) calc(20px * var(--u)); }
 .ansr .bt { font-size: calc(24px * var(--u)); font-weight: 700; letter-spacing: -.01em; margin: calc(6px * var(--u)) 0 calc(4px * var(--u)); }
@@ -468,13 +496,23 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <p>Armadietto conosce già i farmaci: li riconosce dal catalogo di AIFA, quindi sa il dosaggio e quante compresse ci sono nella confezione, senza che tu le conti. Dalla scatola legge la scadenza.</p>
           </div>
           <div class="vis">
-            <div class="cam" role="img" aria-label="La fotocamera inquadra nel mirino una scatola di Ramipril 5 mg da 28 compresse, scadenza marzo 2028.">
+            <div class="cam" role="img" aria-label="La fotocamera inquadra nel mirino una scatola di Ramipril 5 mg da 28 compresse. Armadietto la riconosce: ramipril, compressa, 5 mg; dalla scatola legge scadenza marzo 2028 e confezione da 28.">
               <div aria-hidden="true">
                 <div class="vf"></div>
                 <div class="pack"><b>Ramipril</b><span>5 mg · 28 compresse</span><i>SCAD. 03/2028</i></div>
                 <div class="scanline"></div>
+                <div class="light"></div>
+                <div class="open"></div>
+                <div class="face">
+                  <svg class="chk ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg>
+                  <h5>Ramipril</h5>
+                  <div class="sub">ramipril · compressa · 5 mg</div>
+                  <div class="rd"><span>Letto dalla scatola</span><span>Scad. marzo 2028 ·<br>Confezione da 28</span></div>
+                  <div class="vb2"><span class="no">Non è questo</span><span class="go">Continua</span></div>
+                </div>
               </div>
             </div>
+            <button class="replay" type="button" aria-label="Rivedi la scansione della scatola">Rivedi</button>
           </div>
         </li>
         <li class="tl">
@@ -818,20 +856,20 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
 
 <script>
 (function () {
-  var card = document.querySelector(".card.buy");
-  if (!card) return;
-  var rivedi = card.parentNode.querySelector(".replay");
-  function play() {
-    card.classList.remove("play");
-    void card.offsetWidth;
-    card.classList.add("play");
-  }
-  if (rivedi) rivedi.addEventListener("click", play);
-  if (!("IntersectionObserver" in window)) { play(); return; }
-  var io = new IntersectionObserver(function (entries) {
-    if (entries.some(function (x) { return x.isIntersecting; })) { io.disconnect(); setTimeout(play, 600); }
-  }, { threshold: 0.7 });
-  io.observe(card);
+  document.querySelectorAll(".cam, .card.buy").forEach(function (card) {
+    var rivedi = card.parentNode.querySelector(".replay");
+    function play() {
+      card.classList.remove("play");
+      void card.offsetWidth;
+      card.classList.add("play");
+    }
+    if (rivedi) rivedi.addEventListener("click", play);
+    if (!("IntersectionObserver" in window)) { play(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (x) { return x.isIntersecting; })) { io.disconnect(); setTimeout(play, 600); }
+    }, { threshold: 0.7 });
+    io.observe(card);
+  });
 })();
 </script>
 
