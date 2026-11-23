@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Informativa privacy dell'app · Armadietto</title>
+<link rel="icon" href="icon-180.png">
+<style>
+:root { --bg: #FFFFFF; --ink: #111114; --muted: #6E6E73; --line: #EDEDF0; --action: #2F7BEA; --mark: #FFF1C2; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root { --bg: #000000; --ink: #FFFFFF; --muted: #98989D; --line: #38383A; --action: #0A84FF; --mark: #4A3B10; color-scheme: dark; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+main { max-width: 42rem; margin: 0 auto; padding: 40px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); }
+h1, h2 { font-family: inherit; letter-spacing: -.02em; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: 2rem; margin: 24px 0 8px; }
+h2 { font-size: 1.2rem; margin: 32px 0 8px; }
+p, li { color: var(--ink); }
+li { margin: 4px 0; }
+.muted { color: var(--muted); }
+.summary { border: 1px solid var(--line); border-radius: 12px; padding: 4px 20px; margin: 24px 0 0; }
+mark { background: var(--mark); color: inherit; padding: 0 3px; border-radius: 3px; }
+a { color: var(--action); text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <a href="index.html">← Armadietto</a>
+  <h1>Informativa sulla privacy dell'app</h1>
+  <p class="muted">Armadietto per iPhone, versione 0.1.0 (beta). Ultimo aggiornamento: 23 novembre 2026</p>
+
+  <div class="summary">
+    <h2>In breve</h2>
+    <ul>
+      <li>I tuoi medicinali restano sul tuo iPhone e nel tuo iCloud privato. Noi non li riceviamo.</li>
+      <li>Non serve un account. Niente pubblicità, nessun dato venduto o ceduto.</li>
+      <li>Le statistiche d'uso partono solo se dici di sì, e le spegni quando vuoi.</li>
+      <li>In questa versione l'app non contatta nessun server di Armadietto.</li>
+    </ul>
+  </div>
+
+  <h2>Chi tratta i dati</h2>
+  <p>Titolare del trattamento è Mattia De Bonis, Via Ermete Zacconi 4, 40033 Casalecchio di Reno (BO), raggiungibile a <a href="mailto:mattia.debonis@gmail.com">mattia.debonis@gmail.com</a>.</p>
+
+  <h2>Che cosa resta sul tuo iPhone e nel tuo iCloud</h2>
+  <p>I medicinali, le persone di cui ti occupi, le scorte, le scadenze, le terapie, gli orari e il diario li inserisci tu, e stanno sul tuo iPhone. Se hai iCloud, Armadietto li sincronizza fra i tuoi dispositivi nel tuo database iCloud privato (CloudKit). Li gestisce Apple per tuo conto, noi non vi abbiamo accesso.</p>
+  <ul>
+    <li>Per la massima protezione puoi attivare la Protezione avanzata dei dati di iCloud.</li>
+    <li>Se esci da iCloud, i dati sincronizzati vengono rimossi dal dispositivo e riscaricati al prossimo accesso.</li>
+    <li>Con «Backup su iCloud Drive» acceso, una volta al giorno l'app salva una copia nella cartella «Armadietto» del tuo iCloud Drive e tiene le ultime sette. Le vedi nell'app File. Spegnendo l'interruttore, le copie già fatte restano finché non le elimini tu.</li>
+    <li>«Esporta i tuoi dati» scrive tutti gli elenchi e i medicinali in un file JSON leggibile, e «Importa da un export» li rimette dentro senza sovrascrivere niente.</li>
+  </ul>
+  <p>Sono informazioni che possono riguardare la tua salute o quella di chi assisti. Per questo restano sotto il tuo controllo e non passano da noi.</p>
+
+  <h2>Che cosa fa l'app con i permessi che le dai</h2>
+  <ul>
+    <li><strong>Fotocamera.</strong> Serve a leggere nome e scadenza sulle scatole che inquadri. Il riconoscimento avviene sul telefono e le immagini non vengono salvate.</li>
+    <li><strong>Posizione.</strong> Solo mentre usi l'app, e solo per mostrarti la farmacia più vicina quando un medicinale sta per finire. La ricerca la fa Apple Mappe, quindi la zona in cui cerchi arriva ad Apple, come in ogni ricerca su Mappe. Noi non la riceviamo e non la salviamo.</li>
+    <li><strong>Notifiche.</strong> I promemoria delle dosi e gli avvisi di scorta e scadenza sono programmati sul telefono.</li>
+    <li><strong>Fogli illustrativi.</strong> Quando tocchi il foglio illustrativo o il riassunto delle caratteristiche di un medicinale, l'app scarica il PDF pubblico dal sito dell'AIFA. La richiesta contiene solo gli identificativi AIFA della ditta e del farmaco, nessun dato tuo. Il file resta nella cache del telefono.</li>
+    <li><strong>Scrivi al medico.</strong> L'app prepara il messaggio e lo invii tu con l'app che scegli (Messaggi, Mail, WhatsApp). Il testo passa da quell'app, non da noi.</li>
+    <li><strong>Widget, notifiche, Live Activity e Siri.</strong> Leggono gli stessi dati sul telefono.</li>
+  </ul>
+
+  <h2>Statistiche d'uso anonime (solo se dici di sì)</h2>
+  <p>La prima volta l'app ti chiede se vuoi aiutarci a migliorarla. Finché non rispondi, dal telefono non parte niente. Se dici di no, non partirà mai niente.</p>
+  <ul>
+    <li><strong>Che cosa mandiamo.</strong> Eventi a elenco chiuso (per esempio «ho aperto l'app» o «ho aggiunto un medicinale»), conteggi in fasce come quanto è pieno l'armadietto, la versione dell'app, la versione di iOS e il Paese dell'App Store.</li>
+    <li><strong>Che cosa non mandiamo mai.</strong> Nomi di medicinali o di persone, dosi, codici di prodotto, testi scritti da te.</li>
+    <li><strong>Come.</strong> Con un identificativo casuale per dispositivo, che non ti identifica e cambia se revochi il consenso. Niente profili personali, niente registrazione dello schermo, niente tracciamento fra app e siti. Non ricaviamo la tua posizione dall'indirizzo IP, e PostHog non lo conserva insieme agli eventi.</li>
+    <li><strong>Chi li riceve.</strong> PostHog, con i dati su server nell'Unione europea (<code>eu.i.posthog.com</code>). PostHog li tratta per nostro conto, come responsabile del trattamento.</li>
+    <li><strong>Per quanto.</strong> Gli eventi si conservano per un anno.</li>
+  </ul>
+  <p>Un secondo consenso, separato, riguarda «Anche chi assisti». Se dici di sì, dai medicinali che hai l'app deduce sul telefono parole generiche come «anziano», «bambino» o «emergenza» e le manda insieme alle statistiche. Sono dati sulla salute di chi assisti, e li mandiamo solo con il tuo consenso esplicito. Se dici di no, mandiamo solo quanto è impegnativo l'armadietto, in fasce, senza dire perché.</p>
+  <p>La base giuridica è il tuo consenso (art. 6.1.a GDPR e, per il secondo, art. 9.2.a). Lo ritiri quando vuoi da Impostazioni, con «Statistiche d'uso anonime» e «Anche chi assisti». Spegnendoli, quello che non è ancora partito si cancella.</p>
+
+  <h2>Che cosa non facciamo</h2>
+  <ul>
+    <li>Non c'è un account di Armadietto, e in questa versione l'app non contatta nessun nostro server.</li>
+    <li>Non mostriamo pubblicità e non usiamo SDK pubblicitari.</li>
+    <li>Non vendiamo e non cediamo dati a nessuno.</li>
+    <li>Non ti seguiamo fra altre app e siti.</li>
+  </ul>
+  <h2>TestFlight</h2>
+  <p>Se provi la beta con TestFlight, Apple tratta il tuo indirizzo email e i feedback che invii dal bottone «Invia feedback», secondo la sua informativa. A noi arriva quello che scegli di mandarci, compresi gli screenshot.</p>
+
+  <h2>I tuoi diritti</h2>
+  <p>Puoi esportare i tuoi dati dall'app quando vuoi. Cancellando l'app, i dati sul telefono spariscono; quelli sincronizzati e le copie su iCloud Drive restano nel tuo iCloud finché non li elimini da lì. Puoi chiedere in ogni momento di vedere, correggere o cancellare i dati che trattiamo scrivendo a <a href="mailto:mattia.debonis@gmail.com">mattia.debonis@gmail.com</a>. Le statistiche d'uso sono anonime: non le colleghiamo a te e non possiamo ritrovarle a partire dal tuo nome. Per fermarle spegni l'interruttore in Impostazioni: l'identificativo cambia e quello che non è ancora partito si cancella. Puoi anche presentare reclamo al Garante per la protezione dei dati personali (garanteprivacy.it).</p>
+  <p>Le email della lista d'attesa sul sito hanno <a href="privacy.html">un'informativa a parte</a>.</p>
+
+  <h2>Se questa informativa cambia</h2>
+  <p>Aggiorniamo la data in cima e, se cambia qualcosa che ti riguarda, te lo diciamo nell'app.</p>
+</main>
+</body>
+</html>
