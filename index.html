@@ -198,7 +198,7 @@ p { margin: 0; }
 .cam .vf { position: absolute; left: 33px; right: 33px; top: 56px; bottom: 63px; }
 .cam .vf::before { content: ""; position: absolute; inset: 0; border: 2px solid rgba(235,235,240,.9); border-radius: 10px; -webkit-mask: linear-gradient(#000 0 0) top left / 24px 24px no-repeat, linear-gradient(#000 0 0) top right / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom left / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom right / 24px 24px no-repeat; mask: linear-gradient(#000 0 0) top left / 24px 24px no-repeat, linear-gradient(#000 0 0) top right / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom left / 24px 24px no-repeat, linear-gradient(#000 0 0) bottom right / 24px 24px no-repeat; }
 .cam .scanline { position: absolute; left: 40px; right: 40px; bottom: 77px; height: 2px; background: linear-gradient(90deg, transparent, #FE8670 18%, #FE8670 82%, transparent); box-shadow: 0 0 12px 2px rgba(254,134,112,.35); opacity: .85; }
-.cam .expand { position: absolute; top: 9px; right: 10px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.16); color: #FFF; display: grid; place-items: center; opacity: 0; }
+.cam .expand { position: absolute; top: 9px; right: 10px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.16); color: #FFF; display: grid; place-items: center; }
 .cam .expand svg { width: 12px; height: 12px; stroke-width: 1.8; }
 .cam .pack { position: absolute; left: 50%; top: 46%; width: 70%; aspect-ratio: 1.55; border-radius: 6px; background: linear-gradient(180deg, #FFFFFF 0 62%, #C8102E 62% 100%); box-shadow: 0 14px 30px rgba(0,0,0,.5); color: #111114; padding: 11px 13px; display: grid; align-content: start; gap: 2px; transform: translate(-50%, -50%) rotate(-5deg); opacity: 0; }
 .cam .pack b { font-size: 15px; letter-spacing: -.01em; }
@@ -223,16 +223,15 @@ p { margin: 0; }
 .anim .scr.scan.on .pack { animation: pack var(--cyc) ease-out both; }
 .anim .scr.scan.on .light { animation: light var(--cyc) ease-in-out both; }
 .anim .scr.scan.on .open { animation: open var(--cyc) cubic-bezier(.4,0,.2,1) both; }
-.anim .scr.scan.on .search, .anim .scr.scan.on .expand { animation: hide var(--cyc) ease both; }
 .anim .scr.scan.on .scanline { animation: pulse 1.6s ease-in-out infinite; }
 .anim .scr.scan.on .face > * { animation: enter var(--cyc) cubic-bezier(.2,.8,.2,1) both; }
 .anim .scr.scan.on .face > :nth-child(2) { animation-name: enter2; }
 .anim .scr.scan.on .face > :nth-child(3) { animation-name: enter3; }
 .anim .scr.scan.on .face > :nth-child(4) { animation-name: enter4; }
 .anim .scr.scan.on .face > :nth-child(5) { animation-name: enter5; }
-.scr.scan { --cyc: 3.6s; }
+.scr.scan { --cyc: 2.3s; }
 @keyframes pack { 0% { opacity: 0; transform: translate(-50%, 10%) rotate(4deg) scale(.9); } 12%, 100% { opacity: 1; transform: translate(-50%, -50%) rotate(-5deg) scale(1); } }
-@keyframes light { 0%, 30% { top: -120px; opacity: 1; } 38% { top: 100%; opacity: 1; } 39%, 100% { top: 100%; opacity: 0; } }
+@keyframes light { 0%, 45% { top: -120px; opacity: 1; } 80% { top: 100%; opacity: 1; } 81%, 100% { top: 100%; opacity: 0; } }
 @keyframes open { 0%, 36% { transform: scale(.001); opacity: 0; } 37% { transform: scale(.001); opacity: 1; } 46%, 100% { transform: scale(1); opacity: 1; } }
 @keyframes hide { 0%, 38% { opacity: 1; } 44%, 100% { opacity: 0; } }
 @keyframes pulse { 50% { opacity: .35; } }
@@ -245,7 +244,7 @@ p { margin: 0; }
 .boxcard { margin-top: 12px; flex: none; border-radius: 23px; background: var(--boxcard); box-shadow: 0 8px 24px -12px rgba(0,0,0,.22); display: flex; flex-direction: column; overflow: hidden; }
 .boxcard .bt { padding: 40px 13px 0; font-size: 19px; font-weight: 700; letter-spacing: -.01em; flex: none; }
 .boxcard .lst { padding: 0 13px 14px; }
-.boxcard .lst .hdr:first-child { margin-top: 14px; }
+.boxcard .lst .grp { margin-top: 10px; }
 .grp { background: var(--group-in); border-radius: 15px; }
 .gr { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 35px; padding: 0 12px 0 13px; font-size: 13px; }
 .gr + .gr { border-top: 1px solid var(--hairline); margin-left: 13px; padding-left: 0; }
@@ -291,7 +290,7 @@ p { margin: 0; }
 .anim .scr.hlist.on .buy .cb.fill { animation: tap 2.8s ease .4s both; }
 .anim .scr.hlist.on .buy .gone { animation: fold 2.8s ease .4s both; }
 .anim .scr.hlist.on .buy .n { animation: plain 2.8s step-end .4s both; }
-.hero-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; width: min(100%, 420px); }
+.hero-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; width: min(100%, 380px); }
 .hero-steps button { position: relative; overflow: hidden; width: 100%; height: 100%; font: 600 .75rem/1.2 var(--f); color: var(--muted); background: transparent; border: 0; border-radius: 12px; padding: 8px 4px; cursor: pointer; text-align: center; }
 .hero-steps button[aria-pressed="true"] { color: var(--ink); background: var(--sheet); }
 .hero-steps button span { display: block; font-size: .75rem; color: var(--action); }
@@ -488,7 +487,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
         </div>
 
         <div class="hero-visual">
-          <div class="phone" role="img" aria-label="Il primo avvio di Armadietto. Inquadri una scatola di Ramipril 5 mg e la riconosce: scadenza marzo 2028, confezione da 28, lette dalla scatola. Poi scegli come la prendi, a orari fissi, ogni giorno. La risposta: finisce il 7 febbraio, promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima. ">
+          <div class="phone" role="img" aria-label="Armadietto in quattro passi: inquadri una scatola di Ramipril 5 mg; il riquadro mostra confezione da 28 compresse e scadenza marzo 2028 lette dalla scatola, scegli come la prendi e la risposta è: finisce il 7 febbraio, promemoria il 28 gennaio; il 28 gennaio arriva l'avviso; in farmacia tocchi L'ho comprata e basta per 37 giorni.">
             <div class="screen" aria-hidden="true">
               <div class="scr scan on">
                 <div class="nav"><span class="back"><svg class="ico" viewBox="0 0 10 16"><path d="M8 1.5 1.8 8 8 14.5"/></svg></span><span class="seg"><i></i><i></i><i class="off"></i></span><span class="skip">Salta</span></div>
@@ -498,14 +497,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                   <span class="expand"><svg class="ico" viewBox="0 0 16 16"><path d="M2.5 7V2.5H7M2.5 2.5 7 7M13.5 9v4.5H9M13.5 13.5 9 9"/></svg></span>
                   <div class="pack"><b>Ramipril</b><span>5 mg · 28 compresse</span><i>SCAD. 03/2028</i></div>
                   <div class="light"></div>
-                  <div class="open"></div>
-                  <div class="face">
-                    <svg class="chk ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg>
-                    <h5>Ramipril</h5>
-                    <div class="sub">ramipril · compressa · 5 mg</div>
-                    <div class="rd"><span>Letto dalla scatola</span><span>Scad. marzo 2028 ·<br>Confezione da 28</span></div>
-                    <div class="vb2"><span class="no">Non è questo</span><span class="go">Continua</span></div>
-                  </div>
                 </div>
               </div>
 
@@ -514,6 +505,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                 <div class="boxcard">
                   <div class="bt">Ramipril 5 mg</div>
                   <div class="lst">
+                    <div class="grp">
+                      <div class="gr"><span>Confezione</span><em><svg class="ico cmi" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.4l1.5-2.2h6.2L16.6 7H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/><circle cx="12" cy="12.8" r="3.4"/></svg>28 compresse<svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></em></div>
+                      <div class="gr"><span>Scadenza</span><em><svg class="ico cmi" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.4l1.5-2.2h6.2L16.6 7H19a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/><circle cx="12" cy="12.8" r="3.4"/></svg>marzo 2028<svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></em></div>
+                    </div>
                     <div class="hdr">Come lo prendi</div>
                     <div class="chips2 c1"><span class="on">A orari fissi</span><span>A scalare</span><span>Al bisogno</span></div>
                     <div class="hdr">Ogni quanto</div>
@@ -529,29 +524,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                 <span class="day">giovedì 28 gennaio</span>
                 <span class="clock">9:00</span>
                 <div class="note"><img src="icon-180.png?v=2" alt="" width="30" height="30"><div><b>Ramipril 5 mg finisce il 7 febbraio</b><b>Scorte · ne restano 10</b>Serve la ricetta: chiedila al medico.</div><span class="th"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3.5 19.5 7.5v9L12 20.5 4.5 16.5v-9Z"/><path d="M4.5 7.5 12 11.5l7.5-4M12 11.5v9M8.2 5.5l7.5 4"/></svg></span><span class="tm">ora</span></div>
-              </div>
-
-              <div class="scr hdoc">
-                <div class="doc">
-                  <div class="grab"></div>
-                  <h5>Scrivi al medico</h5>
-                  <div class="sb">Le ricette di «Casa», in un messaggio</div>
-                  <div class="pc">
-                    <div class="dr"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c.8-3.4 3.6-5.5 7-5.5s6.2 2.1 7 5.5"/></svg><div><b>Dottoressa Rinaldi</b><span class="ft">Medico di «Casa» · dai Contatti</span></div><svg class="ico chv" viewBox="0 0 7 12"><path d="m1 1 5 5-5 5"/></svg></div>
-                    <div class="dv"></div>
-                    <div class="mr"><span class="ck"><svg class="ico" viewBox="0 0 12 12"><path d="m2.5 6.3 2.3 2.2L9.5 3.5"/></svg></span><div><b>Ramipril 5 mg</b><span class="ft">Finisce il 7 febbraio · 1 al giorno</span></div><span></span></div>
-                  </div>
-                  <div class="mc">
-                    <div class="mh"><span>Messaggio</span><span>Modifica</span></div>
-                    <div class="mt">Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia</div>
-                    <div class="fr"><span>Firma</span><span>Giulia</span></div>
-                  </div>
-                  <div class="tiles">
-                    <span class="tap"><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/></svg>Messaggi</span>
-                    <span><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12.5" rx="2.5"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>Mail</span>
-                    <span><svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12" rx="2.5"/><path d="M15.5 8V6.5A2.5 2.5 0 0 0 13 4H7a2.5 2.5 0 0 0-2.5 2.5v7A2.5 2.5 0 0 0 7 16h1"/></svg>Copia</span>
-                  </div>
-                </div>
               </div>
 
               <div class="scr hlist">
@@ -575,8 +547,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <li><button type="button" data-i="0"><span>1</span>Inquadri</button></li>
             <li><button type="button" data-i="1"><span>2</span>Sai quando finisce</button></li>
             <li><button type="button" data-i="2"><span>3</span>Ti avvisa</button></li>
-            <li><button type="button" data-i="3"><span>4</span>Chiedi la ricetta</button></li>
-            <li><button type="button" data-i="4"><span>5</span>Tutto a posto</button></li>
+            <li><button type="button" data-i="3"><span>4</span>Tutto a posto</button></li>
           </ol>
         </div>
       </div>
@@ -947,8 +918,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
   var screens = [].slice.call(visual.querySelectorAll(".scr"));
   var box = visual.querySelector(".scr.box");
   var buttons = [].slice.call(visual.querySelectorAll(".hero-steps button"));
-  var schermo = [0, 1, 2, 3, 4];
-  var tempi = [3800, 3200, 2800, 3000, 3400];
+  var schermo = [0, 1, 2, 3];
+  var tempi = [2300, 3200, 2600, 3200];
   var muove = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fermo = !muove;
   var visibile = false;
