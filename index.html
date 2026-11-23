@@ -131,16 +131,17 @@ p { margin: 0; }
 .btn { font: 600 1.0625rem/1 var(--f); padding: 15px 24px; border-radius: 999px; border: 0; background: var(--action-solid); color: var(--on-action); cursor: pointer; white-space: nowrap; display: inline-block; }
 .btn:hover { filter: brightness(1.08); text-decoration: none; }
 .btn[disabled] { opacity: .6; cursor: progress; }
-.btn.quiet { background: var(--action-fill); color: var(--action); }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; }
 .check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--action-solid); flex: none; }
 .hp { position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden; }
 .status { font-weight: 600; min-height: 1.4em; }
 .status.ok { color: var(--ok); }
 .status.err { color: var(--stop); }
-.done { display: grid; gap: 10px; padding: 18px; border-radius: 16px; background: var(--ok-soft); max-width: 30rem; justify-items: start; }
-.done strong { font-size: 1.1875rem; }
-.done .ask { padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--ok) 25%, transparent); width: 100%; }
+.done { display: grid; gap: 4px; max-width: 30rem; padding-left: 34px; }
+.done:focus { outline: none; }
+.done-title { position: relative; font-size: 1.1875rem; font-weight: 600; letter-spacing: -.01em; margin-bottom: 2px; }
+.done-title svg { position: absolute; left: -34px; top: 50%; translate: 0 -50%; width: 24px; height: 24px; stroke: var(--action); stroke-width: 1.8; }
+.done .small { margin-top: 6px; }
 
 .facts { list-style: none; margin: 40px 0 0; padding: 18px 0 0; border-top: 1px solid var(--hairline); display: flex; flex-wrap: wrap; gap: 10px 28px; color: var(--muted); font-size: .9375rem; }
 .facts li { display: flex; align-items: center; gap: 8px; }
@@ -500,10 +501,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <p class="status" role="status" aria-live="polite"></p>
           </form>
           <div class="done" hidden>
-            <strong>Ci sei quasi.</strong>
-            <p>Ti abbiamo mandato una mail: apri il link per confermare l'iscrizione. Se non la trovi, guarda nello spam.</p>
-            <p class="ask">Lo dici a chi si occupa delle medicine con te?</p>
-            <button class="btn quiet share" type="button">Condividi la pagina</button>
+            <p class="done-title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.4 2.8 2.8L16.2 9.6"/></svg>Grazie!</p>
+            <p data-dopo="Ti scriviamo quando Armadietto arriva sull'App Store.">Riceverai l'invito alla beta via email.</p>
+            <p class="small">Prima conferma l'iscrizione dal link che ti abbiamo appena mandato. Se non lo trovi, guarda nello spam.</p>
           </div>
         </div>
 
@@ -937,10 +937,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
         <p class="status" role="status" aria-live="polite"></p>
       </form>
       <div class="done" hidden>
-        <strong>Ci sei quasi.</strong>
-        <p>Ti abbiamo mandato una mail: apri il link per confermare l'iscrizione. Se non la trovi, guarda nello spam.</p>
-        <p class="ask">Lo dici a chi si occupa delle medicine con te?</p>
-        <button class="btn quiet share" type="button">Condividi la pagina</button>
+        <p class="done-title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.4 2.8 2.8L16.2 9.6"/></svg>Grazie!</p>
+        <p data-dopo="Ti scriviamo quando Armadietto arriva sull'App Store.">Riceverai l'invito alla beta via email.</p>
+        <p class="small">Prima conferma l'iscrizione dal link che ti abbiamo appena mandato. Se non lo trovi, guarda nello spam.</p>
       </div>
     </div>
   </section>
@@ -1081,21 +1080,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
         invia.disabled = false;
         errore(stato, "Non siamo riusciti a iscriverti. Controlla la connessione e riprova tra poco.");
       });
-  });
-
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest(".share");
-    if (!b) return;
-    var dati = {
-      title: "Armadietto",
-      text: "Armadietto ti dice quando finiscono le medicine di casa e ti avvisa prima. C'è la lista d'attesa della beta per iPhone.",
-      url: location.href.split("#")[0]
-    };
-    if (navigator.share) {
-      navigator.share(dati).catch(function () {});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(dati.url).then(function () { b.textContent = "Link copiato"; });
-    }
   });
 })();
 </script>
