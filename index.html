@@ -223,7 +223,7 @@ section { padding-block: 72px; }
 .cam .pack b { font-size: 18px; letter-spacing: -.01em; }
 .cam .pack span { font-size: 12px; color: #6E6E73; }
 .cam .pack i { position: absolute; left: 15px; bottom: 9px; font-style: normal; font-size: 10px; color: #FFF; font-weight: 600; letter-spacing: .04em; }
-.cam .scanline { position: absolute; left: 38px; right: 38px; bottom: 56px; height: 2px; background: linear-gradient(90deg, transparent, #FE8670 18%, #FE8670 82%, transparent); box-shadow: 0 0 12px 2px rgba(254,134,112,.35); opacity: .85; }
+.cam .scanline { position: absolute; left: 44px; right: 44px; top: 50%; height: 2px; background: linear-gradient(90deg, transparent, #FE8670 18%, #FE8670 82%, transparent); box-shadow: 0 0 12px 2px rgba(254,134,112,.35); opacity: .85; }
 .cam .face { position: absolute; inset: 0; padding: 20px 20px 18px; display: flex; flex-direction: column; color: var(--ink); background: var(--group); visibility: hidden; }
 .cam .chk { width: 32px; height: 32px; stroke: var(--face-green); stroke-width: 1.6; }
 .cam .face h5 { margin-top: 14px; font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
@@ -235,14 +235,53 @@ section { padding-block: 72px; }
 .cam .vb2 span { height: 42px; border-radius: 10px; display: grid; place-items: center; font-weight: 600; font-size: 14px; white-space: nowrap; }
 .cam .vb2 .no { background: var(--chip-gray); color: var(--action); }
 .cam .vb2 .go { background: var(--action-solid); color: #FFF; }
+.cam .vf::after { content: "Inquadra la scatola"; position: absolute; left: 50%; top: -30px; transform: translateX(-50%); padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,.55); color: #FFF; font-size: 12px; font-weight: 600; white-space: nowrap; opacity: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .cam.play .scanline { animation: scan-pulse 1.2s ease-in-out; }
-  .cam.play .face { visibility: visible; animation: scan-fade .6s ease 1.1s both; }
-  .cam.play .face > * { animation: scan-rise .6s ease 1.1s both; }
+  .cam.armed:not(.play) .pack { transform: translate(-30%, -24%) rotate(-15deg) scale(1.2); }
+  .cam.armed:not(.play) .vf { inset: 18px 12px; }
+  .cam.armed:not(.play) .scanline { opacity: 0; }
+  .cam.play .pack { animation: cam-aim 1.3s cubic-bezier(.3, .7, .2, 1) both; }
+  .cam.play .vf { animation: cam-frame 1.6s cubic-bezier(.3, .7, .2, 1) both; }
+  .cam.play .vf::before { animation: cam-lock .35s ease 1.35s both; }
+  .cam.play .vf::after { animation: cam-hint 1.5s ease both; }
+  .cam.play .scanline { animation: cam-sweep 1.2s ease-in-out 1.6s both; }
+  .cam.play .face { visibility: visible; animation: scan-fade .5s ease 2.85s both; }
+  .cam.play .face > * { animation: scan-rise .5s ease 2.85s both; }
 }
-@keyframes scan-pulse { 50% { opacity: .45; } }
+@keyframes cam-aim {
+  0% { transform: translate(-30%, -24%) rotate(-15deg) scale(1.2); }
+  55% { transform: translate(-53%, -47%) rotate(-2deg) scale(.98); }
+  100% { transform: translate(-50%, -50%) rotate(-5deg); }
+}
+@keyframes cam-frame { 0% { inset: 18px 12px; } 50% { inset: 40px 30px; } 85%, 100% { inset: 80px 34px; } }
+@keyframes cam-lock { 0% { border-color: rgba(235,235,240,.9); border-width: 2px; } 60% { border-color: #FE8670; border-width: 4px; } 100% { border-color: #FE8670; border-width: 3px; } }
+@keyframes cam-hint { 0% { opacity: 0; } 15%, 75% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes cam-sweep { 0% { top: 88px; opacity: 0; } 12% { opacity: 1; } 50% { top: calc(100% - 90px); } 88% { opacity: 1; } 100% { top: 88px; opacity: 0; } }
 @keyframes scan-fade { from { opacity: 0; } }
 @keyframes scan-rise { from { transform: translateY(4px); } }
+
+.pv { display: inline-grid; justify-items: end; }
+.pv > * { grid-area: 1 / 1; font-style: normal; }
+.pv i { color: var(--placeholder); opacity: 0; }
+.pv b { font-weight: 500; color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .ansr.armed:not(.play) .chips2 span.on { background: var(--chip-gray); color: var(--ink); font-weight: var(--w, 600); }
+  .ansr.armed:not(.play) .pv i { opacity: 1; }
+  .ansr.armed:not(.play) .pv b { opacity: 0; }
+  .ansr.armed:not(.play) .fab { opacity: 0; }
+  .ansr.play .chips2 span.on { animation: chip-on .45s ease .5s both; }
+  .ansr.play .chips2.lite span.on { animation-delay: 1.1s; }
+  .ansr.play .pv i { animation: pv-out .3s ease 1.7s both; }
+  .ansr.play .pv b { animation: pv-in .35s ease 1.75s both; }
+  .ansr.play .pform div + div .pv i { animation-delay: 2.05s; }
+  .ansr.play .pform div + div .pv b { animation-delay: 2.1s; }
+  .ansr.play .fab { animation: fab-in .55s cubic-bezier(.3, .7, .2, 1) 2.7s both; }
+}
+.chips2.lite span { --w: 400; }
+@keyframes chip-on { 0% { background: var(--chip-gray); color: var(--ink); font-weight: var(--w, 600); transform: none; } 45% { background: var(--chip-gray); color: var(--ink); font-weight: var(--w, 600); transform: scale(.9); } 100% { transform: none; } }
+@keyframes pv-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pv-in { from { opacity: 0; transform: translateY(3px); } }
+@keyframes fab-in { from { opacity: 0; transform: translateY(8px) scale(.97); } }
 
 .card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: calc(16px * var(--u)) calc(20px * var(--u)); }
 .ansr .bt { font-size: calc(24px * var(--u)); font-weight: 700; letter-spacing: -.01em; margin: calc(6px * var(--u)) 0 calc(4px * var(--u)); }
@@ -289,6 +328,37 @@ section { padding-block: 72px; }
 .doc .tiles { margin: calc(12px * var(--u)) calc(16px * var(--u)) 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(8px * var(--u)); }
 .doc .tiles span { min-height: calc(64px * var(--u)); border-radius: calc(12px * var(--u)); background: var(--group); color: var(--action); display: grid; justify-items: center; align-content: center; gap: calc(4px * var(--u)); font-size: calc(13px * var(--u)); font-weight: 600; }
 .doc .tiles svg { width: calc(24px * var(--u)); height: calc(24px * var(--u)); stroke-width: 1.5; }
+.doc { position: relative; --wa-bar: #F6F6F6; --wa-bg: #EFEAE2; --wa-in: #FFFFFF; --wa-ink: #111B21; --wa-sub: #667781; --wa-green: #25D366; --wa-day: #FFFFFF; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .doc { --wa-bar: #1F2C34; --wa-bg: #0B141A; --wa-in: #2A3942; --wa-ink: #E9EDEF; --wa-sub: #8696A0; --wa-day: #182229; } }
+:root[data-theme="dark"] .doc { --wa-bar: #1F2C34; --wa-bg: #0B141A; --wa-in: #2A3942; --wa-ink: #E9EDEF; --wa-sub: #8696A0; --wa-day: #182229; }
+.doc .tiles .wt { position: relative; }
+.doc .tap { position: absolute; left: 50%; top: 50%; width: calc(38px * var(--u)); height: calc(38px * var(--u)); margin: calc(-19px * var(--u)) 0 0 calc(-19px * var(--u)); border-radius: 50%; background: rgba(120, 120, 128, .35); border: 2px solid rgba(255, 255, 255, .85); box-shadow: 0 2px 10px rgba(0, 0, 0, .25); opacity: 0; pointer-events: none; }
+.wa { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--wa-bg); color: var(--wa-ink); visibility: hidden; transform: translateY(100%); }
+.wa-top { display: flex; align-items: center; gap: calc(10px * var(--u)); padding: calc(14px * var(--u)) calc(14px * var(--u)) calc(10px * var(--u)); background: var(--wa-bar); border-bottom: 1px solid rgba(0, 0, 0, .08); }
+.wa-top .bk { width: calc(10px * var(--u)); height: calc(18px * var(--u)); stroke: #007AFF; stroke-width: 2.4; flex: none; }
+.wa-top .wav { width: calc(36px * var(--u)); height: calc(36px * var(--u)); border-radius: 50%; background: #DFE5E7; color: #667781; display: grid; place-items: center; flex: none; }
+.wa-top .wav svg { width: 70%; height: 70%; stroke-width: 1.6; }
+.wa-top b { display: block; font-size: calc(16px * var(--u)); font-weight: 600; line-height: 1.2; }
+.wa-top small { display: block; font-size: calc(12px * var(--u)); color: var(--wa-sub); }
+.wa-chat { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding-top: calc(14px * var(--u)); }
+.wa-chat span { padding: calc(4px * var(--u)) calc(10px * var(--u)); border-radius: 8px; background: var(--wa-day); color: var(--wa-sub); font-size: calc(12px * var(--u)); box-shadow: 0 1px 1px rgba(0, 0, 0, .06); }
+.wa-bar { display: flex; align-items: flex-end; gap: calc(8px * var(--u)); padding: calc(8px * var(--u)) calc(10px * var(--u)) calc(12px * var(--u)); background: var(--wa-bar); }
+.wa-bar .pl { width: calc(22px * var(--u)); height: calc(22px * var(--u)); margin-bottom: calc(8px * var(--u)); stroke: #007AFF; stroke-width: 2; flex: none; }
+.wa-in { flex: 1; min-width: 0; padding: calc(8px * var(--u)) calc(12px * var(--u)); border-radius: calc(18px * var(--u)); background: var(--wa-in); border: 1px solid rgba(0, 0, 0, .08); font-size: calc(15px * var(--u)); line-height: 1.38; }
+.wa-in i { display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #25D366; }
+.wa-send { width: calc(36px * var(--u)); height: calc(36px * var(--u)); border-radius: 50%; background: var(--wa-green); display: grid; place-items: center; flex: none; }
+.wa-send svg { width: 55%; height: 55%; fill: #FFF; stroke: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .doc.play .tap { animation: tap-dot 1.1s ease .5s both; }
+  .doc.play .wt { animation: tile-press 1.1s ease .5s both; }
+  .doc.play .wa { visibility: visible; animation: wa-open .55s cubic-bezier(.25, .8, .25, 1) 1.55s both; }
+  .doc.play .wa-in span { animation: pv-in .4s ease 2.15s both; }
+  .doc.play .wa-in i { animation: caret 1s step-end 2.4s infinite; }
+}
+@keyframes tap-dot { 0% { opacity: 0; transform: scale(1.6); } 35% { opacity: 1; transform: scale(1); } 55% { opacity: 1; transform: scale(.8); } 100% { opacity: 0; transform: scale(1.1); } }
+@keyframes tile-press { 0%, 45% { transform: none; filter: none; } 55% { transform: scale(.92); filter: brightness(.9); } 75%, 100% { transform: none; filter: none; } }
+@keyframes wa-open { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes caret { 50% { opacity: 0; } }
 .doc .fn { padding: calc(14px * var(--u)) calc(24px * var(--u)) calc(12px * var(--u)); text-align: center; font-size: calc(13px * var(--u)); color: var(--muted); }
 
 .list-card { background: var(--screen); padding-top: calc(6px * var(--u)); padding-bottom: calc(6px * var(--u)); }
@@ -511,7 +581,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <p>Tu dici solo come la prendi, e il giorno in cui finisce lo calcola da solo. Ti dice anche quando arriverà il promemoria per la ricetta.</p>
           </div>
           <div class="vis">
-            <div class="card ansr" role="img" aria-label="Ramipril 5 mg, confezione da 28 compresse, scadenza marzo 2028, posologia 1 compressa alle 8:00 ogni giorno. Finisce il 7 febbraio. Promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima, lo cambi in Notifiche.">
+            <div class="card ansr" role="img" aria-label="Ramipril 5 mg, confezione da 28 compresse, scadenza marzo 2028, posologia: a orari fissi, ogni giorno, 1 compressa alle 8:00. Finisce il 7 febbraio. Promemoria il 28 gennaio per la ricetta, 7 giorni lavorativi prima, lo cambi in Notifiche.">
               <div aria-hidden="true">
                 <div class="bt">Ramipril 5 mg</div>
                 <div class="bsub">28 compresse · scadenza marzo 2028</div>
@@ -520,10 +590,13 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                   <div class="chips2"><span class="on">A orari fissi</span><span>A scalare</span><span>Al bisogno</span></div>
                   <div class="hdr">Ogni quanto</div>
                   <div class="chips2 lite"><span class="on">Ogni giorno</span><span>Giorni alterni</span><span>Alcuni giorni</span></div>
+                  <div class="hdr">Quanto e quando</div>
+                  <div class="pform"><div><span>Dose</span><span class="pv"><i>Scegli</i><b>1 compressa</b></span></div><div><span>Orario</span><span class="pv"><i>Scegli</i><b>8:00</b></span></div></div>
                 </div>
                 <div class="fab"><svg class="ico" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="m10 16.5 4 4 8-9"/></svg><div><b>Finisce il 7 febbraio</b><span class="g">Promemoria il 28 gennaio per la ricetta</span><small>7 giorni lavorativi prima · lo cambi in Notifiche</small></div></div>
               </div>
             </div>
+            <button class="replay" type="button" aria-label="Rivedi come si compila la scheda">Rivedi</button>
           </div>
         </li>
         <li class="tl">
@@ -553,7 +626,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
             <p>Se altre medicine con ricetta finiscono entro un mese, le chiedi nello stesso messaggio.</p>
           </div>
           <div class="vis">
-            <div class="doc" role="img" aria-label="Il foglio «Scrivi al medico»: le ricette di «Casa», in un messaggio. Medico: dottoressa Rinaldi, dai Contatti. Spuntato Ramipril 5 mg, finisce il 7 febbraio, 1 al giorno. Il messaggio: «Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia». Si manda con Messaggi, WhatsApp, Mail o Copia.">
+            <div class="doc" role="img" aria-label="Il foglio «Scrivi al medico»: le ricette di «Casa», in un messaggio. Medico: dottoressa Rinaldi, dai Contatti. Spuntato Ramipril 5 mg, finisce il 7 febbraio, 1 al giorno. Il messaggio: «Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia». Si manda con Messaggi, WhatsApp, Mail o Copia. Tocchi WhatsApp e si apre la chat con la dottoressa Rinaldi, con il messaggio già scritto: basta premere invia.">
               <div aria-hidden="true">
                 <div class="grab"></div>
                 <h5>Scrivi al medico</h5>
@@ -570,12 +643,18 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
                 </div>
                 <div class="tiles">
                   <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/></svg>Messaggi</span>
-                  <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/><path d="M9.2 9.3c.3 1.9 1.6 3.3 3.6 3.9l.9-.9 1.4.6-.3 1.2c-2.9-.1-5.6-2.6-5.9-5.4l1.1-.4.7 1.3Z"/></svg>WhatsApp</span>
+                  <span class="wt"><svg class="ico" viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8s-3.8 6.8-8.5 6.8c-1 0-2-.1-2.9-.4L5 19.5l1-3.4c-1.6-1.2-2.5-2.9-2.5-4.8 0-3.8 3.8-6.8 8.5-6.8Z"/><path d="M9.2 9.3c.3 1.9 1.6 3.3 3.6 3.9l.9-.9 1.4.6-.3 1.2c-2.9-.1-5.6-2.6-5.9-5.4l1.1-.4.7 1.3Z"/></svg>WhatsApp<i class="tap"></i></span>
                   <span><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12.5" rx="2.5"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>Mail</span>
                   <span><svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12" rx="2.5"/><path d="M15.5 8V6.5A2.5 2.5 0 0 0 13 4H7a2.5 2.5 0 0 0-2.5 2.5v7A2.5 2.5 0 0 0 7 16h1"/></svg>Copia</span>
                 </div>
+                <div class="wa">
+                  <div class="wa-top"><svg class="ico bk" viewBox="0 0 10 18"><path d="M8.5 1.5 1.5 9l7 7.5"/></svg><span class="wav"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c.8-3.4 3.6-5.5 7-5.5s6.2 2.1 7 5.5"/></svg></span><div><b>Dott.ssa Rinaldi</b><small>tocca qui per info contatto</small></div></div>
+                  <div class="wa-chat"><span>Oggi</span></div>
+                  <div class="wa-bar"><svg class="ico pl" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><div class="wa-in"><span>Buongiorno dottoressa Rinaldi, avrei bisogno della ricetta di Ramipril 5 mg. Ne restano per 10 giorni. Grazie, Giulia</span><i></i></div><span class="wa-send"><svg viewBox="0 0 24 24"><path d="M4 12.5 20 4l-4.5 16-3.2-6.6L4 12.5Z"/></svg></span></div>
+                </div>
               </div>
             </div>
+            <button class="replay" type="button" aria-label="Rivedi l'invio con WhatsApp">Rivedi</button>
           </div>
         </li>
         <li class="tl">
@@ -777,8 +856,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
           <p data-dopo="La beta su iPhone è partita con un gruppo piccolo e le iscrizioni alla beta sono chiuse. Chi è in lista riceve la mail quando Armadietto arriva sull'App Store.">La beta su iPhone parte in questi giorni con un gruppo piccolo. Chi si iscrive entro il 15 dicembre riceve l'invito, poi la mail quando Armadietto arriva sull'App Store. Chi si iscrive dopo riceve solo la mail dell'uscita.</p>
         </details>
         <details>
-          <summary>Quanto costa?</summary>
-          <p>È gratis, con tutte le medicine che vuoi.</p>
+          <summary>Quanto costa? Le funzioni della beta restano gratis?</summary>
+          <p>Sì: se ti iscrivi, tutte le funzioni che trovi nella beta restano gratis per te, anche dopo l'uscita sull'App Store, con tutte le medicine che vuoi.</p>
         </details>
         <details>
           <summary>C'è per Android?</summary>
@@ -845,7 +924,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
 
 <script>
 (function () {
-  document.querySelectorAll(".cam, .card.buy").forEach(function (card) {
+  var moto = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".cam, .card.ansr, .doc, .card.buy").forEach(function (card) {
     var rivedi = card.parentNode.querySelector(".replay");
     function play() {
       card.classList.remove("play");
@@ -854,9 +934,16 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: 
     }
     if (rivedi) rivedi.addEventListener("click", play);
     if (!("IntersectionObserver" in window)) { play(); return; }
+    if (moto) card.classList.add("armed");
+    // Parte solo quando l'immagine animata è tutta sullo schermo
+    // (o, se è più alta dello schermo, quando lo riempie).
     var io = new IntersectionObserver(function (entries) {
-      if (entries.some(function (x) { return x.isIntersecting; })) { io.disconnect(); setTimeout(play, 600); }
-    }, { threshold: 0.7 });
+      entries.forEach(function (x) {
+        var vista = x.rootBounds ? x.rootBounds.height : window.innerHeight;
+        var intera = x.intersectionRatio >= 0.98 || (x.boundingClientRect.height > vista && x.intersectionRect.height >= vista * 0.95);
+        if (x.isIntersecting && intera) { io.disconnect(); setTimeout(play, 250); }
+      });
+    }, { threshold: [0, 0.5, 0.9, 0.95, 0.98, 1] });
     io.observe(card);
   });
 })();
